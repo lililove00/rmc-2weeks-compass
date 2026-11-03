@@ -65,6 +65,8 @@
   .toc a{display:block; text-decoration:none; text-align:center; font-size:13px; font-weight:700;
     color:#fff; background:#57534a; border-radius:9px; padding:7px 4px}
   .toc-label{font-size:13px; font-weight:700; margin:8px 0 4px}
+  .wd-h{font-weight:800; margin:14px 0 4px}
+  .wd-h:first-of-type{margin-top:2px}
   a.to-top{position:fixed; right:16px; bottom:16px; z-index:60; background:var(--cherry); color:#fff;
     text-decoration:none; font-weight:700; font-size:13px; padding:11px 16px; border-radius:99px;
     box-shadow:0 4px 14px rgba(0,0,0,.22)}
@@ -410,12 +412,45 @@
   <div class="view-heading"><span class="eyebrow">2 WEEKS</span><h2>2週間の⼀覧</h2><p>Day1〜14と、授業・添削会などの日程をまとめて確認できます。</p></div>
   <section class="panel"><h2>📅 日程カレンダー（11/16〜11/29）</h2><p class="note" style="margin:0 0 8px">授業・添削会・月報会・作業会のある日です。<br>日付を押すと、その日のカードへ飛びます。<br>詳しい告知は #スケジュール で確認してください。</p><div class="cal-head"><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span><span>日</span></div><div class="cal-row"><a class="cal-cell has-ev" href="#w1-mon" data-goto-day="0"><span class="cal-d">16</span><span class="cal-ev">23:00 作業会【10-30万】</span></a><a class="cal-cell has-ev" href="#w1-tue" data-goto-day="1"><span class="cal-d">17</span><span class="cal-ev">10:00 おとよ 全体授業</span></a><a class="cal-cell has-ev" href="#w1-wed" data-goto-day="2"><span class="cal-d">18</span><span class="cal-ev">23:00 作業会【30万〜】</span></a><a class="cal-cell has-ev" href="#w1-thu" data-goto-day="3"><span class="cal-d">19</span><span class="cal-ev">22:00 おとよ 全体添削会</span></a><a class="cal-cell has-ev" href="#w1-fri" data-goto-day="4"><span class="cal-d">20</span><span class="cal-ev">11:00 売上別テーマ</span></a><a class="cal-cell" href="#w1-sat" data-goto-day="5"><span class="cal-d">21</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w1-sun" data-goto-day="6"><span class="cal-d">22</span><span class="cal-ev">10:00 しほ 全体添削会</span></a></div><div class="cal-row"><a class="cal-cell" href="#w2-mon" data-goto-day="7"><span class="cal-d">23</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-tue" data-goto-day="8"><span class="cal-d">24</span><span class="cal-ev">22:00 おとよ 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-wed" data-goto-day="9"><span class="cal-d">25</span><span class="cal-ev">22:00 はな 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-thu" data-goto-day="10"><span class="cal-d">26</span><span class="cal-ev">22:00 おとよ 売上別月報会</span></a><a class="cal-cell" href="#w2-fri" data-goto-day="11"><span class="cal-d">27</span><span class="cal-ev"></span></a><a class="cal-cell" href="#w2-sat" data-goto-day="12"><span class="cal-d">28</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-sun" data-goto-day="13"><span class="cal-d">29</span><span class="cal-ev">22:00 しほ 売上別月報会</span></a></div></section>
   <section class="panel">
-    <h2>📑 目次（押すと、その日までスクロールします）</h2>
-    <div class="toc-label">1週目</div>
-    <div class="toc"><a href="#w1-mon" data-goto-day="0">月</a><a href="#w1-tue" data-goto-day="1">火</a><a href="#w1-wed" data-goto-day="2">水</a><a href="#w1-thu" data-goto-day="3">木</a><a href="#w1-fri" data-goto-day="4">金</a><a href="#w1-sat" data-goto-day="5">土</a><a href="#w1-sun" data-goto-day="6">日</a></div>
-    <div class="toc-label">2週目</div>
-    <div class="toc"><a href="#w2-mon" data-goto-day="7">月</a><a href="#w2-tue" data-goto-day="8">火</a><a href="#w2-wed" data-goto-day="9">水</a><a href="#w2-thu" data-goto-day="10">木</a><a href="#w2-fri" data-goto-day="11">金</a><a href="#w2-sat" data-goto-day="12">土</a><a href="#w2-sun" data-goto-day="13">日</a></div>
-    <a class="room-btn cherry" style="max-width:460px; margin-top:8px" href="#report1">📝 日報部屋への投稿（振り返りの型）へジャンプ ↓</a>
+    <h2>🗓 曜日ごとのやること</h2>
+    <p class="wd-h">月曜日</p>
+    <ul class="task-note">
+      <li>ラジオを聴く</li>
+      <li>自分の売上帯の部屋で「今週の1本」を見る</li>
+      <li>今日の目標を、日報タスク部屋で宣言する</li>
+      <li>今週の授業・添削会などの日程を確認する</li>
+    </ul>
+    <p class="wd-h">火曜日</p>
+    <ul class="task-note">
+      <li>昨日のラジオのアウトプットを1つ出す</li>
+      <li>7:59までに動画教材へアップ（アーカイブは翌日12時まで）</li>
+    </ul>
+    <p class="wd-h">水曜日</p>
+    <ul class="task-note">
+      <li>ラジオを聴く</li>
+      <li>週の後半にやることを決める</li>
+    </ul>
+    <p class="wd-h">木曜日</p>
+    <ul class="task-note">
+      <li>講師3人のノウハウ部屋から1つ読んで、アウトプットを出す</li>
+      <li>交流の日。誰か1人に声をかける</li>
+    </ul>
+    <p class="wd-h">金曜日</p>
+    <ul class="task-note">
+      <li>ラジオを聴く</li>
+      <li>来週の予定を先に決める</li>
+    </ul>
+    <p class="wd-h">土曜日</p>
+    <ul class="task-note">
+      <li>配信授業を1本見る</li>
+      <li>見た内容を、アウトプットか日報に1行残す</li>
+    </ul>
+    <p class="wd-h">日曜日</p>
+    <ul class="task-note">
+      <li>10分ふり返り（できた・できなかったの確認）</li>
+      <li>日報タスク部屋へ報告する</li>
+    </ul>
+    <a class="room-btn cherry" style="max-width:460px; margin-top:10px" href="#report1">📝 日報部屋への投稿（振り返りの型）へジャンプ ↓</a>
   </section>
   </main>
   <main data-view="rooms">
@@ -441,7 +476,7 @@
     <p class="note" style="margin-top:8px">※ アンケートに答えていないと、売上別部屋には参加できません。</p>
   </section>
   <section class="panel">
-    <h2>🔗 いつでも使う行き先（部屋リンク集）</h2>
+    <h2>🔗 Discord部屋リンク集</h2>
     <div class="rooms"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400785237931331676" target="_blank" rel="noopener">🎥 #ズームリンク部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">🗂 #アーカイブ部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1408439269042950297" target="_blank" rel="noopener">🌸 #月報報告部屋 →</a></div>
     <p class="note">毎月20日の「今月のテーマ」は、自分の売上帯の部屋（#0-5万円／#5-10万円）で話し合います。</p>
   </section>
@@ -482,7 +517,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v25）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v26）</footer>
 </div>
 
 <script>
