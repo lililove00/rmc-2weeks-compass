@@ -136,6 +136,19 @@
     border-radius:99px; padding:12px; font-weight:700; font-size:14.5px; cursor:pointer}
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
     outline:3px solid #b0526f; outline-offset:2px}
+  .habit-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:5px}
+  .habit-cell{background:#f1e9df; border:1.5px solid transparent; border-radius:10px; padding:6px 2px;
+    text-align:center; text-decoration:none; color:var(--sub); display:block}
+  .habit-cell .hd{font-weight:800; font-size:15px; display:block; color:var(--ink)}
+  .habit-cell .hw{font-size:10px; display:block}
+  .habit-cell .hm{font-size:11px; display:block; height:14px}
+  .habit-cell.half{background:var(--mint-soft); border-color:var(--mint)}
+  .habit-cell.rep{background:var(--cherry-soft); border-color:#f6c3d2}
+  .habit-cell.full{background:var(--mint); color:#fff}
+  .habit-cell.full .hd{color:#fff}
+  .habit-stats{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+  .habit-stats span{background:#fbf8f3; border:1px solid var(--line); border-radius:99px;
+    padding:4px 13px; font-size:13px; font-weight:700}
 </style>
 </head>
 <body>
@@ -313,6 +326,19 @@
     <p>いつもの日報に「2週間シート Day◯ ☑」を1行追加するだけです。</p>
     <a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 日報タスク部屋へ →</a>
   </div>
+
+  <section class="panel" style="margin-top:16px">
+    <h2>📊 わたしの習慣カレンダー</h2>
+    <div class="habit-grid"><a class="habit-cell" data-habit="0" href="#w1-mon" data-goto-day="0"><span class="hd">16</span><span class="hw">月</span><span class="hm"></span></a><a class="habit-cell" data-habit="1" href="#w1-tue" data-goto-day="1"><span class="hd">17</span><span class="hw">火</span><span class="hm"></span></a><a class="habit-cell" data-habit="2" href="#w1-wed" data-goto-day="2"><span class="hd">18</span><span class="hw">水</span><span class="hm"></span></a><a class="habit-cell" data-habit="3" href="#w1-thu" data-goto-day="3"><span class="hd">19</span><span class="hw">木</span><span class="hm"></span></a><a class="habit-cell" data-habit="4" href="#w1-fri" data-goto-day="4"><span class="hd">20</span><span class="hw">金</span><span class="hm"></span></a><a class="habit-cell" data-habit="5" href="#w1-sat" data-goto-day="5"><span class="hd">21</span><span class="hw">土</span><span class="hm"></span></a><a class="habit-cell" data-habit="6" href="#w1-sun" data-goto-day="6"><span class="hd">22</span><span class="hw">日</span><span class="hm"></span></a></div>
+    <div class="habit-grid" style="margin-top:5px"><a class="habit-cell" data-habit="7" href="#w2-mon" data-goto-day="7"><span class="hd">23</span><span class="hw">月</span><span class="hm"></span></a><a class="habit-cell" data-habit="8" href="#w2-tue" data-goto-day="8"><span class="hd">24</span><span class="hw">火</span><span class="hm"></span></a><a class="habit-cell" data-habit="9" href="#w2-wed" data-goto-day="9"><span class="hd">25</span><span class="hw">水</span><span class="hm"></span></a><a class="habit-cell" data-habit="10" href="#w2-thu" data-goto-day="10"><span class="hd">26</span><span class="hw">木</span><span class="hm"></span></a><a class="habit-cell" data-habit="11" href="#w2-fri" data-goto-day="11"><span class="hd">27</span><span class="hw">金</span><span class="hm"></span></a><a class="habit-cell" data-habit="12" href="#w2-sat" data-goto-day="12"><span class="hd">28</span><span class="hw">土</span><span class="hm"></span></a><a class="habit-cell" data-habit="13" href="#w2-sun" data-goto-day="13"><span class="hd">29</span><span class="hw">日</span><span class="hm"></span></a></div>
+    <div class="habit-stats">
+      <span id="habitPct">達成率 0%</span>
+      <span id="habitDone">できた 0/14日</span>
+      <span id="habitRep">日報 0/14日</span>
+      <span id="habitStreak">連続記録 0日</span>
+    </div>
+    <p class="note" style="margin-top:8px">色の見方：<b style="color:var(--mint)">緑＝できた＋日報の両方</b>／薄緑＝できた／ピンク＝日報のみ。日付を押すと、その日のカードへ飛びます。記録はこの端末の中だけに保存されます。</p>
+  </section>
   <button class="secondary" data-view-btn="about">はじめての方へ：全体説明・使い方を見る</button>
   </main>
   <main data-view="about">
@@ -424,7 +450,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v20）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v21）</footer>
 </div>
 
 <script>
@@ -464,12 +490,36 @@
   }
   mains.forEach(function(cb){ cb.addEventListener("change", renderProgress); });
   renderProgress();
+  var reps = document.querySelectorAll('input[type="checkbox"][data-key^="rep"]');
+  function renderHabit(){
+    var done = 0, repn = 0, streak = 0, best = 0;
+    document.querySelectorAll(".habit-cell").forEach(function(c){
+      var i = Number(c.dataset.habit);
+      var m = mains[i] && mains[i].checked, r = reps[i] && reps[i].checked;
+      c.classList.toggle("full", !!(m && r));
+      c.classList.toggle("half", !!(m && !r));
+      c.classList.toggle("rep", !!(!m && r));
+      c.querySelector(".hm").textContent = (m && r) ? "✓✓" : (m ? "✓" : (r ? "✎" : ""));
+    });
+    mains.forEach(function(cb){ if (cb.checked) { done++; streak++; if (streak > best) best = streak; } else streak = 0; });
+    reps.forEach(function(cb){ if (cb.checked) repn++; });
+    var pct = document.getElementById("habitPct"), hd = document.getElementById("habitDone"),
+        hr = document.getElementById("habitRep"), hs = document.getElementById("habitStreak");
+    if (pct) pct.textContent = "達成率 " + Math.round(done / 14 * 100) + "%";
+    if (hd) hd.textContent = "できた " + done + "/14日";
+    if (hr) hr.textContent = "日報 " + repn + "/14日";
+    if (hs) hs.textContent = "連続記録 " + best + "日";
+  }
+  document.querySelectorAll('input[type="checkbox"][data-key]').forEach(function(cb){
+    cb.addEventListener("change", renderHabit);
+  });
+  renderHabit();
   var reset = document.getElementById("resetBtn");
   if (reset) reset.addEventListener("click", function(){
     if (!confirm("チェックをすべて消します。よろしいですか？")) return;
     state = {}; save();
     document.querySelectorAll('input[type="checkbox"][data-key]').forEach(function(cb){ cb.checked = false; });
-    renderProgress();
+    renderProgress(); renderHabit();
   });
 
   /* ===== v18: ビュー切替とDay選択 ===== */
