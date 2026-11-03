@@ -80,6 +80,8 @@
     font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; text-decoration:none}
   .dmap a.done{background:var(--mint); color:#fff}
   .toc a span{font-size:11px; font-weight:400}
+  .event{background:var(--cherry-soft); border:1px solid #f6c3d2; border-radius:10px;
+    padding:7px 9px; font-size:12.5px; font-weight:700; color:#a03a58}
 </style>
 </head>
 <body>
@@ -91,6 +93,7 @@
     <p style="font-size:13.5px; color:#b0526f; font-weight:700; margin:0 0 6px">しほが考えた、2つ目の企画です。</p>
     <p>曜日ごとに「今日やること」と「行く部屋」が決まっているカレンダーです。</p>
     <ul class="p-list" style="margin-top:8px">
+      <li><b>期間：2026年11月16日（月）〜 11月29日（日）</b></li>
       <li>月曜スタートで、Day1〜Day14</li>
       <li>朝ひらく → ボタンで部屋へ → やったらチェック → 夜は日報で報告</li>
     </ul>
@@ -109,6 +112,19 @@
     <div class="progress"><i id="progressBar"></i></div>
     <p style="margin:0; font-size:13.5px" id="progressText">進み具合：まだチェックがありません。今日の分からどうぞ。</p>
     <div class="dmap"><a href="#w1-mon" data-i="0">1</a><a href="#w1-tue" data-i="1">2</a><a href="#w1-wed" data-i="2">3</a><a href="#w1-thu" data-i="3">4</a><a href="#w1-fri" data-i="4">5</a><a href="#w1-sat" data-i="5">6</a><a href="#w1-sun" data-i="6">7</a><a href="#w2-mon" data-i="7">8</a><a href="#w2-tue" data-i="8">9</a><a href="#w2-wed" data-i="9">10</a><a href="#w2-thu" data-i="10">11</a><a href="#w2-fri" data-i="11">12</a><a href="#w2-sat" data-i="12">13</a><a href="#w2-sun" data-i="13">14</a></div>
+    <div class="toc-label" style="margin-top:14px">📅 この2週間の授業・添削会など（リアタイ参加の目安）</div>
+    <ul class="p-list" style="font-size:13.5px">
+      <li>11/16（月）23:00〜 夜の作業会【10〜30万円】</li>
+      <li>11/17（火）10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</li>
+      <li>11/18（水）23:00〜 夜の作業会【30万円以上】</li>
+      <li>11/19（木）22:00〜 おとよさん｜全体の添削会（ストーリーズ）</li>
+      <li>11/20（金）11:00〜 売上別テーマ（自分の売上帯の部屋で）</li>
+      <li>11/22（日）10:00〜 しほ｜全体の添削会</li>
+      <li>11/24（火）22:00〜 おとよさん｜売上別添削会（10〜30万円）</li>
+      <li>11/25（水）22:00〜 はなさん｜売上別添削会（30万円以上）</li>
+      <li>11/26（木）22:00〜 おとよさん｜売上別月報会（10〜30万円）</li>
+      <li>11/29（日）22:00〜 しほ｜売上別月報会（0〜10万円）</li>
+    </ul>
     <p class="note" style="margin-top:6px">数字＝Day番号。色が付いた日が「できた！」済みです。押すとその日のカードへ飛びます。</p>
   </section>
 
@@ -166,9 +182,10 @@
   <div class="week-title"><h2>1週目</h2><span>知って、触る週</span></div>
   <div class="grid">
 <div class="day mon" id="w1-mon">
-  <div><span class="dow">月曜日</span><br><span class="date">Day 1</span></div>
+  <div><span class="dow">月曜日</span><br><span class="date">Day 1｜11/16</span></div>
   <h3>🎧 はなさんのラジオを聴く</h3>
   <p class="desc"><b>＋「今週の1本」が届く日</b></p><ul class="tight"><li>ラジオを聴く</li><li>自分の売上帯の部屋で「今週の1本」を確認</li><li>今週の目標を、日報で1つ宣言</li></ul>
+  <div class="event">📅 今日 23:00〜 夜の作業会【10〜30万円】</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main0"> できた！</label>
@@ -176,9 +193,10 @@
   </div>
 </div>
 <div class="day tue" id="w1-tue">
-  <div><span class="dow">火曜日</span><br><span class="date">Day 2</span></div>
+  <div><span class="dow">火曜日</span><br><span class="date">Day 2｜11/17</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p><ul class="tight"><li>月曜ラジオで「いいな」と思ったことを1つ選ぶ</li><li>自分の行動にしてみる（小さくてOK）</li><li>アウトプット部屋か日報に残す</li></ul>
+  <div class="event">📅 今日 10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main1"> できた！</label>
@@ -186,9 +204,10 @@
   </div>
 </div>
 <div class="day wed" id="w1-wed">
-  <div><span class="dow">水曜日</span><br><span class="date">Day 3</span></div>
+  <div><span class="dow">水曜日</span><br><span class="date">Day 3｜11/18</span></div>
   <h3>🎧 おとよさんのラジオを聴く</h3>
   <p class="desc"><b>気になった一言をメモ</b></p><ul class="tight"><li>おとよさんのラジオを聴く</li><li>気になった一言をメモ（それだけでOK）</li><li>木曜の発言ネタにもなります</li></ul>
+  <div class="event">📅 今日 23:00〜 夜の作業会【30万円以上】</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main2"> できた！</label>
@@ -196,9 +215,10 @@
   </div>
 </div>
 <div class="day thu" id="w1-thu">
-  <div><span class="dow">木曜日</span><br><span class="date">Day 4</span></div>
+  <div><span class="dow">木曜日</span><br><span class="date">Day 4｜11/19</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p><ul class="tight"><li>講師3人のノウハウ部屋から、1つ読む</li><li>アウトプット部屋に、1つ出す</li><li>声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</li><li>例：「私も同じこと思いました」「そこ盲点でした」など、1つでOK</li></ul>
+  <div class="event">📅 今日 22:00〜 おとよさん｜全体の添削会（ストーリーズ）</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main3"> できた！</label>
@@ -206,9 +226,10 @@
   </div>
 </div>
 <div class="day fri" id="w1-fri">
-  <div><span class="dow">金曜日</span><br><span class="date">Day 5</span></div>
+  <div><span class="dow">金曜日</span><br><span class="date">Day 5｜11/20</span></div>
   <h3>🎧 しほのラジオを聴く</h3>
   <p class="desc"><b>週末にやることを1つ決める</b></p><ul class="tight"><li>しほのラジオを聴く</li><li>土曜に見る授業か、週末の作業を1つ決める</li></ul>
+  <div class="event">📅 今日 11:00〜 売上別テーマ（自分の売上帯の部屋で話し合います）</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main4"> できた！</label>
@@ -216,7 +237,7 @@
   </div>
 </div>
 <div class="day sat" id="w1-sat">
-  <div><span class="dow">土曜日</span><br><span class="date">Day 6</span></div>
+  <div><span class="dow">土曜日</span><br><span class="date">Day 6｜11/21</span></div>
   <h3>🎬 配信授業を1本見る</h3>
   <p class="desc"><b>迷ったら「今週の1本」から</b></p><ul class="tight"><li>#動画教材／#アーカイブ部屋から1本見る</li><li>迷ったら、月曜の「今週の1本」がおすすめ</li></ul>
   <div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">#アーカイブ部屋 へ →</a></div>
@@ -226,9 +247,10 @@
   </div>
 </div>
 <div class="day sun" id="w1-sun">
-  <div><span class="dow">日曜日</span><br><span class="date">Day 7</span></div>
+  <div><span class="dow">日曜日</span><br><span class="date">Day 7｜11/22</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p><ul class="tight"><li>下の「振り返り報告」の型で、日報タスク部屋に報告</li><li>できなかった理由も書くと、次が組みやすくなります</li><li>休むのもOKです</li></ul>
+  <div class="event">📅 今日 10:00〜 しほ｜全体の添削会</div>
   <div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report1">📝 投稿の型へジャンプ ↓</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main6"> できた！</label>
@@ -240,7 +262,7 @@
   <div class="week-title"><h2>2週目</h2><span>動いて、出してみる週</span></div>
   <div class="grid">
 <div class="day mon" id="w2-mon">
-  <div><span class="dow">月曜日</span><br><span class="date">Day 8</span></div>
+  <div><span class="dow">月曜日</span><br><span class="date">Day 8｜11/23</span></div>
   <h3>🎧 はなさんのラジオを聴く</h3>
   <p class="desc"><b>＋「今週の1本」が届く日</b></p><ul class="tight"><li>ラジオを聴く</li><li>「今週の1本」もチェック</li><li>2週目の目標を、日報で1つ宣言</li></ul>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
@@ -250,9 +272,10 @@
   </div>
 </div>
 <div class="day tue" id="w2-tue">
-  <div><span class="dow">火曜日</span><br><span class="date">Day 9</span></div>
+  <div><span class="dow">火曜日</span><br><span class="date">Day 9｜11/24</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p><ul class="tight"><li>月曜ラジオで「いいな」と思ったことを1つ選ぶ</li><li>自分の行動にしてみる（小さくてOK）</li><li>アウトプット部屋か日報に残す</li></ul>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別添削会（10〜30万円）</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main8"> できた！</label>
@@ -260,9 +283,10 @@
   </div>
 </div>
 <div class="day wed" id="w2-wed">
-  <div><span class="dow">水曜日</span><br><span class="date">Day 10</span></div>
+  <div><span class="dow">水曜日</span><br><span class="date">Day 10｜11/25</span></div>
   <h3>🎧 おとよさんのラジオを聴く</h3>
   <p class="desc"><b>気になった一言をメモ</b></p><ul class="tight"><li>おとよさんのラジオを聴く</li><li>気になった一言をメモ（それだけでOK）</li><li>木曜の発言ネタにもなります</li></ul>
+  <div class="event">📅 今日 22:00〜 はなさん｜売上別添削会（30万円以上）</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main9"> できた！</label>
@@ -270,9 +294,10 @@
   </div>
 </div>
 <div class="day thu" id="w2-thu">
-  <div><span class="dow">木曜日</span><br><span class="date">Day 11</span></div>
+  <div><span class="dow">木曜日</span><br><span class="date">Day 11｜11/26</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p><ul class="tight"><li>講師3人のノウハウ部屋から、1つ読む</li><li>アウトプット部屋に、1つ出す</li><li>声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</li><li>例：「私も同じこと思いました」「そこ盲点でした」など、1つでOK</li></ul>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別月報会（10〜30万円）</div>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main10"> できた！</label>
@@ -280,7 +305,7 @@
   </div>
 </div>
 <div class="day fri" id="w2-fri">
-  <div><span class="dow">金曜日</span><br><span class="date">Day 12</span></div>
+  <div><span class="dow">金曜日</span><br><span class="date">Day 12｜11/27</span></div>
   <h3>🎧 しほのラジオを聴く</h3>
   <p class="desc"><b>週末にやることを1つ決める</b></p><ul class="tight"><li>しほのラジオを聴く</li><li>土曜に見る授業か、週末の作業を1つ決める</li></ul>
   <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div>
@@ -290,7 +315,7 @@
   </div>
 </div>
 <div class="day sat" id="w2-sat">
-  <div><span class="dow">土曜日</span><br><span class="date">Day 13</span></div>
+  <div><span class="dow">土曜日</span><br><span class="date">Day 13｜11/28</span></div>
   <h3>🎬 配信授業を1本見る</h3>
   <p class="desc"><b>「どう使うか」を考えながら</b></p><ul class="tight"><li>#動画教材／#アーカイブ部屋から1本見る</li><li>「自分の作業にどう使うか」を考えながら見る</li></ul>
   <div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">#アーカイブ部屋 へ →</a></div>
@@ -300,9 +325,10 @@
   </div>
 </div>
 <div class="day sun" id="w2-sun">
-  <div><span class="dow">日曜日</span><br><span class="date">Day 14</span></div>
+  <div><span class="dow">日曜日</span><br><span class="date">Day 14｜11/29</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p><ul class="tight"><li>下の「振り返り報告」の型で、日報タスク部屋に報告</li><li>できなかった理由も書くと、次が組みやすくなります</li><li>休むのもOKです</li></ul>
+  <div class="event">📅 今日 22:00〜 しほ｜売上別月報会（0〜10万円）</div>
   <div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report2">📝 投稿の型へジャンプ ↓</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main13"> できた！</label>
@@ -347,7 +373,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
 
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v16）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v17）</footer>
 </div>
 
 <script>
