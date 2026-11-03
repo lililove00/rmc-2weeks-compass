@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RMC 2週間コンパス｜曜日ごとの行き先カレンダー</title>
+<script>document.documentElement.className += ' js';</script>
 <style>
   :root{--mint:#5fbfa8; --mint-soft:#e6f6f1; --cherry:#f2789c; --cherry-soft:#fdeef3;
     --ink:#33322e; --sub:#7a766c; --line:#eee7dd; --bg:#fffaf4; --card:#ffffff; --blue:#6a8fd0;}
@@ -40,7 +41,7 @@
   .day p.desc{margin:0; font-size:12.5px; color:var(--sub); flex:1}
   .btn-stack{display:flex; flex-direction:column; gap:6px}
   a.room-btn{display:block; text-decoration:none; font-size:13px; font-weight:700;
-    color:#fff; background:var(--mint); border-radius:10px; padding:8px 10px; text-align:center}
+    color:#fff; background:var(--mint); border-radius:99px; padding:11px 12px; text-align:center}
   a.room-btn.cherry{background:var(--cherry)}
   a.room-btn.blue{background:var(--blue)}
   a.room-btn.dark{background:#57534a}
@@ -82,111 +83,74 @@
   .toc a span{font-size:11px; font-weight:400}
   .event{background:var(--cherry-soft); border:1px solid #f6c3d2; border-radius:10px;
     padding:7px 9px; font-size:12.5px; font-weight:700; color:#a03a58}
+
+  .topbar{position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:12px;
+    background:rgba(255,250,244,.96); border-bottom:1px solid var(--line); padding:10px 14px}
+  .menu-btn{width:42px; height:42px; border-radius:50%; background:#57534a; color:#fff; border:none;
+    font-size:19px; cursor:pointer; flex:none}
+  .topbar .ttl{font-weight:800; font-size:16.5px}
+  .menu-overlay{position:fixed; inset:0; z-index:80; background:rgba(51,50,46,.45); display:none}
+  .menu-overlay.open{display:block}
+  .menu-panel{background:var(--bg); width:min(360px,88vw); height:100%; padding:22px 18px; overflow:auto}
+  .menu-panel h2{margin:0 0 14px; font-size:21px}
+  .menu-item{display:block; width:100%; text-align:left; background:#fff; border:1.5px solid var(--line);
+    border-radius:99px; padding:13px 20px; margin-bottom:12px; cursor:pointer}
+  .menu-item b{color:#1f6fd0; font-size:16px; display:block}
+  .menu-item span{font-size:12.5px; color:var(--sub)}
+  .menu-item.active{background:var(--mint-soft); border-color:var(--mint)}
+  .menu-close{float:right; width:40px; height:40px; border-radius:50%; background:#57534a; color:#fff; border:none; font-size:17px; cursor:pointer}
+  .band{background:linear-gradient(135deg,var(--mint-soft),#eef7f3); border-left:5px solid var(--mint);
+    border-radius:6px; padding:20px 20px 16px; margin-bottom:16px}
+  .band-label{letter-spacing:.18em; font-size:12px; font-weight:800; color:var(--mint)}
+  .band-title{font-size:27px; font-weight:800; margin:4px 0 6px}
+  .band p{margin:0; font-size:14px; color:var(--sub)}
+  .band-badge{display:inline-block; margin-top:10px; background:#fff; border:1px solid var(--line);
+    border-radius:99px; padding:3px 12px; font-size:12px; font-weight:700; color:#a03a58}
+  select#daySelect{width:100%; font:inherit; font-size:16px; padding:12px 14px; margin-top:8px;
+    border:1.5px solid var(--line); border-radius:99px; background:#fff}
+  .day{border-top:4px solid var(--mint)}
+  .day.sat{border-top-color:var(--blue)} .day.sun{border-top-color:var(--cherry)}
+  details.fold{background:#fbf8f3; border-radius:12px; padding:9px 12px}
+  details.fold summary{font-weight:700; font-size:13.5px; cursor:pointer}
+  .cal-head,.cal-row{display:grid; grid-template-columns:repeat(7,1fr); gap:5px}
+  .cal-head span{text-align:center; font-size:12px; font-weight:700; color:var(--sub); padding:2px 0}
+  .cal-row{margin-bottom:5px}
+  .cal-cell{background:#fbf8f3; border:1px solid var(--line); border-radius:10px; padding:6px 5px;
+    min-height:74px; text-decoration:none; color:var(--ink); display:block}
+  .cal-cell .cal-d{font-weight:800; font-size:14px; display:block}
+  .cal-cell .cal-ev{font-size:10.5px; line-height:1.45; color:var(--sub); display:block; margin-top:2px}
+  .cal-cell.has-ev{background:var(--cherry-soft); border-color:#f6c3d2}
+  .cal-cell.has-ev .cal-ev{color:#a03a58; font-weight:700}
+  html.js [data-view]{display:none}
+  html.js [data-view].active{display:block}
+  html.js .day{display:none}
+  html.js .day.current{display:flex}
 </style>
 </head>
 <body>
+<div class="topbar"><button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button><span class="ttl">RMC 2週間コンパス</span></div>
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-panel">
+    <button class="menu-close" id="menuClose" aria-label="閉じる">✕</button>
+    <h2>メニュー</h2>
+    <button class="menu-item" data-view-btn="today"><b>今日やること</b><span>1日分に集中</span></button>
+    <button class="menu-item" data-view-btn="about"><b>全体説明・使い方</b><span>はじめての方はこちら</span></button>
+    <button class="menu-item" data-view-btn="list"><b>2週間の⼀覧</b><span>Day1〜14を確認</span></button>
+    <button class="menu-item" data-view-btn="rooms"><b>部屋・アンケート</b><span>売上別部屋とリンク集</span></button>
+    <button class="menu-item" data-view-btn="report"><b>振り返り・日報の型</b><span>コピーして報告</span></button>
+  </div>
+</div>
 <div class="wrap" id="top">
-
-  <header class="hero">
-    <div style="display:inline-block; background:#f2789c; color:#fff; font-size:12px; font-weight:700; border-radius:99px; padding:3px 14px; margin-bottom:10px">セカンド企画</div>
-    <h1>🧭 RMC 2週間コンパス</h1>
-    <p style="font-size:13.5px; color:#b0526f; font-weight:700; margin:0 0 6px">しほが考えた、2つ目の企画です。</p>
-    <p>曜日ごとに「今日やること」と「行く部屋」が決まっているカレンダーです。</p>
-    <ul class="p-list" style="margin-top:8px">
-      <li><b>期間：2026年11月16日（月）〜 11月29日（日）</b></li>
-      <li>月曜スタートで、Day1〜Day14</li>
-      <li>朝ひらく → ボタンで部屋へ → やったらチェック → 夜は日報で報告</li>
-    </ul>
-    <p style="margin-top:10px"><b>各ボタンからディスコードへ！</b></p>
-  </header>
-
-  <section class="panel" id="overview">
-    <h2>🗺 2週間の全体像（まずここだけ見ればOK）</h2>
-    <div class="steps" style="grid-template-columns:repeat(2,1fr)">
-      <div class="step"><b>1週目：知って、触る週</b>コンテンツに触って、リズムに慣れる週</div>
-      <div class="step"><b>2週目：動いて、出してみる週</b>アウトプットと交流を増やす週</div>
-    </div>
-    <div class="toc-label">曜日のリズム（押すと、その日のカードへ）</div>
-    <div class="toc"><a href="#w1-mon">月<br><span>🎧ラジオ＋1本</span></a><a href="#w1-tue">火<br><span>✍️アウトプット</span></a><a href="#w1-wed">水<br><span>🎧ラジオ</span></a><a href="#w1-thu">木<br><span>💡ノウハウ＋交流</span></a><a href="#w1-fri">金<br><span>🎧ラジオ</span></a><a href="#w1-sat">土<br><span>🎬授業1本</span></a><a href="#w1-sun">日<br><span>🌿振り返り</span></a></div>
-    <div class="toc-label" style="margin-top:14px">自分の進み具合</div>
-    <div class="progress"><i id="progressBar"></i></div>
-    <p style="margin:0; font-size:13.5px" id="progressText">進み具合：まだチェックがありません。今日の分からどうぞ。</p>
-    <div class="dmap"><a href="#w1-mon" data-i="0">1</a><a href="#w1-tue" data-i="1">2</a><a href="#w1-wed" data-i="2">3</a><a href="#w1-thu" data-i="3">4</a><a href="#w1-fri" data-i="4">5</a><a href="#w1-sat" data-i="5">6</a><a href="#w1-sun" data-i="6">7</a><a href="#w2-mon" data-i="7">8</a><a href="#w2-tue" data-i="8">9</a><a href="#w2-wed" data-i="9">10</a><a href="#w2-thu" data-i="10">11</a><a href="#w2-fri" data-i="11">12</a><a href="#w2-sat" data-i="12">13</a><a href="#w2-sun" data-i="13">14</a></div>
-    <div class="toc-label" style="margin-top:14px">📅 この2週間の授業・添削会など（リアタイ参加の目安）</div>
-    <ul class="p-list" style="font-size:13.5px">
-      <li>11/16（月）23:00〜 夜の作業会【10〜30万円】</li>
-      <li>11/17（火）10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</li>
-      <li>11/18（水）23:00〜 夜の作業会【30万円以上】</li>
-      <li>11/19（木）22:00〜 おとよさん｜全体の添削会（ストーリーズ）</li>
-      <li>11/20（金）11:00〜 売上別テーマ（自分の売上帯の部屋で）</li>
-      <li>11/22（日）10:00〜 しほ｜全体の添削会</li>
-      <li>11/24（火）22:00〜 おとよさん｜売上別添削会（10〜30万円）</li>
-      <li>11/25（水）22:00〜 はなさん｜売上別添削会（30万円以上）</li>
-      <li>11/26（木）22:00〜 おとよさん｜売上別月報会（10〜30万円）</li>
-      <li>11/29（日）22:00〜 しほ｜売上別月報会（0〜10万円）</li>
-    </ul>
-    <p class="note" style="margin-top:6px">数字＝Day番号。色が付いた日が「できた！」済みです。押すとその日のカードへ飛びます。</p>
-  </section>
-
-  <section class="panel">
-    <h2>📑 目次（押すと、その日までスクロールします）</h2>
-    <div class="toc-label">1週目</div>
-    <div class="toc"><a href="#w1-mon">月</a><a href="#w1-tue">火</a><a href="#w1-wed">水</a><a href="#w1-thu">木</a><a href="#w1-fri">金</a><a href="#w1-sat">土</a><a href="#w1-sun">日</a></div>
-    <div class="toc-label">2週目</div>
-    <div class="toc"><a href="#w2-mon">月</a><a href="#w2-tue">火</a><a href="#w2-wed">水</a><a href="#w2-thu">木</a><a href="#w2-fri">金</a><a href="#w2-sat">土</a><a href="#w2-sun">日</a></div>
-    <a class="room-btn cherry" style="max-width:460px; margin-top:8px" href="#report1">📝 日報部屋への投稿（振り返りの型）へジャンプ ↓</a>
-  </section>
-
-  <section class="panel" style="border:2px solid var(--cherry); background:#fff5f8">
-    <h2>📌 売上別部屋について（大事な案内）</h2>
-    <ul class="p-list" style="margin-bottom:10px">
-      <li>「今週の1本」は、<b>売上別部屋でのみ</b>配信されます</li>
-      <li>売上別部屋の中でしかやらない企画もあります</li>
-      <li>入れるのは、<b>全体連絡部屋のアンケート</b>に答えた方だけです</li>
-      <li>見たい方は、まずアンケートに答えてくださいね</li>
-    </ul>
-    <a class="room-btn cherry" style="max-width:420px" href="https://discord.com/channels/1400630282964701254/1400785059312701470" target="_blank" rel="noopener">全体連絡部屋へ（アンケートはこちら） →</a>
-    <h2 style="margin-top:18px">売上別部屋はこちら（自分の売上帯の部屋へ）</h2>
-    <div class="rooms">
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円 →</a>
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円 →</a>
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円 →</a>
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円 →</a>
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円 →</a>
-      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上 →</a>
-    </div>
-    <p class="note" style="margin-top:8px">※ アンケートに答えていないと、売上別部屋には参加できません。</p>
-  </section>
-
-  <section class="panel">
-    <h2>この企画について・使い方</h2>
-    <ul class="p-list">
-      <li>RMCには日報・ラジオ・授業・添削・ノウハウなど、コンテンツがたくさんあります</li>
-      <li>この2週間は新しいことを増やしません</li>
-      <li><b>曜日ごとのリズム</b>で、今あるコンテンツを使い切るテストです</li>
-    </ul>
-    <div class="steps">
-      <div class="step"><b>① 朝、今日のカードを見る</b>曜日でやることが決まっています</div>
-      <div class="step"><b>② ボタンから部屋へ飛ぶ</b>実行は全部Discord（と授業ページ）で</div>
-      <div class="step"><b>③ 夜、日報タスク部屋で報告</b>報告したらこのページでチェック</div>
-    </div>
-    <p class="note">✔ チェックは自分のための目印です。ブラウザが対応していれば、この端末にだけ保存されます。</p>
-  </section>
-
-  <section class="panel">
-    <h2>🔗 いつでも使う行き先（部屋リンク集）</h2>
-    <div class="rooms"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400785237931331676" target="_blank" rel="noopener">🎥 #ズームリンク部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">🗂 #アーカイブ部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1408439269042950297" target="_blank" rel="noopener">🌸 #月報報告部屋 →</a></div>
-    <p class="note">毎月20日の「今月のテーマ」は、自分の売上帯の部屋（#0-5万円／#5-10万円）で話し合います。</p>
-  </section>
-
-  <div class="week-title"><h2>1週目</h2><span>知って、触る週</span></div>
-  <div class="grid">
+  <main data-view="today" class="active">
+  <div class="band"><div class="band-label">ONE STEP AT A TIME</div><div class="band-title">今日は、ここから。</div><p>1つ選んで取り組む。できたらチェックして、夜は日報へ。</p><span class="band-badge">セカンド企画｜期間：11/16（月）〜11/29（日）</span></div>
+  <div class="panel" style="padding:14px 18px"><label for="daySelect" style="font-weight:700; font-size:15px">今日取り組むDay</label><select id="daySelect"><option value="0">Day 1｜11/16（月）</option><option value="1">Day 2｜11/17（火）</option><option value="2">Day 3｜11/18（水）</option><option value="3">Day 4｜11/19（木）</option><option value="4">Day 5｜11/20（金）</option><option value="5">Day 6｜11/21（土）</option><option value="6">Day 7｜11/22（日）</option><option value="7">Day 8｜11/23（月）</option><option value="8">Day 9｜11/24（火）</option><option value="9">Day 10｜11/25（水）</option><option value="10">Day 11｜11/26（木）</option><option value="11">Day 12｜11/27（金）</option><option value="12">Day 13｜11/28（土）</option><option value="13">Day 14｜11/29（日）</option></select><p class="note" style="margin:6px 0 0">期間中（11/16〜29）は、今日のDayが自動で選ばれます。別の日を選ぶこともできます。</p></div>
+  <div class="grid" style="grid-template-columns:1fr">
 <div class="day mon" id="w1-mon">
   <div><span class="dow">月曜日</span><br><span class="date">Day 1｜11/16</span></div>
   <h3>🎧 はなさんのラジオを聴く</h3>
   <p class="desc"><b>＋「今週の1本」が届く日</b></p><ul class="tight"><li>ラジオを聴く</li><li>自分の売上帯の部屋で「今週の1本」を確認</li><li>今週の目標を、日報で1つ宣言</li></ul>
   <div class="event">📅 今日 23:00〜 夜の作業会【10〜30万円】</div>
-  <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
+  <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><details class="fold"><summary>▶ 今週の1本｜自分の売上帯の部屋を選ぶ</summary><div class="btn-stack" style="margin-top:6px"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a></div></details><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main0"> できた！</label>
     <label><input type="checkbox" data-key="rep0"> 日報を出した</label>
@@ -257,15 +221,11 @@
     <label><input type="checkbox" data-key="rep6"> 日報を出した</label>
   </div>
 </div>
-  </div>
-
-  <div class="week-title"><h2>2週目</h2><span>動いて、出してみる週</span></div>
-  <div class="grid">
 <div class="day mon" id="w2-mon">
   <div><span class="dow">月曜日</span><br><span class="date">Day 8｜11/23</span></div>
   <h3>🎧 はなさんのラジオを聴く</h3>
   <p class="desc"><b>＋「今週の1本」が届く日</b></p><ul class="tight"><li>ラジオを聴く</li><li>「今週の1本」もチェック</li><li>2週目の目標を、日報で1つ宣言</li></ul>
-  <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
+  <div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a><details class="fold"><summary>▶ 今週の1本｜自分の売上帯の部屋を選ぶ</summary><div class="btn-stack" style="margin-top:6px"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円（今週の1本） →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上（今週の1本） →</a></div></details><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール で今週の授業・添削会を確認 →</a></div>
   <div class="checks">
     <label><input type="checkbox" data-key="main7"> できた！</label>
     <label><input type="checkbox" data-key="rep7"> 日報を出した</label>
@@ -336,7 +296,77 @@
   </div>
 </div>
   </div>
-
+  </main>
+  <main data-view="about">
+  <section class="panel"><p style="margin:0; font-size:14px"><span style="display:inline-block; background:#f2789c; color:#fff; font-size:12px; font-weight:700; border-radius:99px; padding:3px 14px; margin-bottom:8px">セカンド企画</span><br><b>🧭 RMC 2週間コンパス</b>（しほが考えた、2つ目の企画です）<br>曜日ごとに「今日やること」と「行く部屋」が決まっているカレンダーです。各ボタンからディスコードへ！</p></section>
+  <section class="panel" id="overview">
+    <h2>🗺 2週間の全体像（まずここだけ見ればOK）</h2>
+    <div class="steps" style="grid-template-columns:repeat(2,1fr)">
+      <div class="step"><b>1週目：知って、触る週</b>コンテンツに触って、リズムに慣れる週</div>
+      <div class="step"><b>2週目：動いて、出してみる週</b>アウトプットと交流を増やす週</div>
+    </div>
+    <div class="toc-label">曜日のリズム（押すと、その日のカードへ）</div>
+    <div class="toc"><a href="#w1-mon" data-goto-day="0">月<br><span>🎧ラジオ＋1本</span></a><a href="#w1-tue" data-goto-day="1">火<br><span>✍️アウトプット</span></a><a href="#w1-wed" data-goto-day="2">水<br><span>🎧ラジオ</span></a><a href="#w1-thu" data-goto-day="3">木<br><span>💡ノウハウ＋交流</span></a><a href="#w1-fri" data-goto-day="4">金<br><span>🎧ラジオ</span></a><a href="#w1-sat" data-goto-day="5">土<br><span>🎬授業1本</span></a><a href="#w1-sun" data-goto-day="6">日<br><span>🌿振り返り</span></a></div>
+    <div class="toc-label" style="margin-top:14px">自分の進み具合</div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <p style="margin:0; font-size:13.5px" id="progressText">進み具合：まだチェックがありません。今日の分からどうぞ。</p>
+    <div class="dmap"><a href="#w1-mon" data-goto-day="0" data-i="0">1</a><a href="#w1-tue" data-goto-day="1" data-i="1">2</a><a href="#w1-wed" data-goto-day="2" data-i="2">3</a><a href="#w1-thu" data-goto-day="3" data-i="3">4</a><a href="#w1-fri" data-goto-day="4" data-i="4">5</a><a href="#w1-sat" data-goto-day="5" data-i="5">6</a><a href="#w1-sun" data-goto-day="6" data-i="6">7</a><a href="#w2-mon" data-goto-day="7" data-i="7">8</a><a href="#w2-tue" data-goto-day="8" data-i="8">9</a><a href="#w2-wed" data-goto-day="9" data-i="9">10</a><a href="#w2-thu" data-goto-day="10" data-i="10">11</a><a href="#w2-fri" data-goto-day="11" data-i="11">12</a><a href="#w2-sat" data-goto-day="12" data-i="12">13</a><a href="#w2-sun" data-goto-day="13" data-i="13">14</a></div>
+    <p class="note" style="margin-top:6px">数字＝Day番号。色が付いた日が「できた！」済みです。押すとその日のカードへ飛びます。</p>
+  </section>
+  <section class="panel">
+    <h2>この企画について・使い方</h2>
+    <ul class="p-list">
+      <li>RMCには日報・ラジオ・授業・添削・ノウハウなど、コンテンツがたくさんあります</li>
+      <li>この2週間は新しいことを増やしません</li>
+      <li><b>曜日ごとのリズム</b>で、今あるコンテンツを使い切るテストです</li>
+    </ul>
+    <div class="steps">
+      <div class="step"><b>① 朝、今日のカードを見る</b>曜日でやることが決まっています</div>
+      <div class="step"><b>② ボタンから部屋へ飛ぶ</b>実行は全部Discord（と授業ページ）で</div>
+      <div class="step"><b>③ 夜、日報タスク部屋で報告</b>報告したらこのページでチェック</div>
+    </div>
+    <p class="note">✔ チェックは自分のための目印です。ブラウザが対応していれば、この端末にだけ保存されます。</p>
+  </section>
+  </main>
+  <main data-view="list">
+  <section class="panel"><h2>📅 日程カレンダー（11/16〜11/29）</h2><p class="note" style="margin:0 0 8px">授業・添削会・月報会・作業会のある日です。日付を押すと、その日のカードへ飛びます。詳しい告知は #スケジュール で確認してください。</p><div class="cal-head"><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span><span>日</span></div><div class="cal-row"><a class="cal-cell has-ev" href="#w1-mon" data-goto-day="0"><span class="cal-d">16</span><span class="cal-ev">23:00 作業会【10-30万】</span></a><a class="cal-cell has-ev" href="#w1-tue" data-goto-day="1"><span class="cal-d">17</span><span class="cal-ev">10:00 おとよ 全体授業</span></a><a class="cal-cell has-ev" href="#w1-wed" data-goto-day="2"><span class="cal-d">18</span><span class="cal-ev">23:00 作業会【30万〜】</span></a><a class="cal-cell has-ev" href="#w1-thu" data-goto-day="3"><span class="cal-d">19</span><span class="cal-ev">22:00 おとよ 全体添削会</span></a><a class="cal-cell has-ev" href="#w1-fri" data-goto-day="4"><span class="cal-d">20</span><span class="cal-ev">11:00 売上別テーマ</span></a><a class="cal-cell" href="#w1-sat" data-goto-day="5"><span class="cal-d">21</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w1-sun" data-goto-day="6"><span class="cal-d">22</span><span class="cal-ev">10:00 しほ 全体添削会</span></a></div><div class="cal-row"><a class="cal-cell" href="#w2-mon" data-goto-day="7"><span class="cal-d">23</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-tue" data-goto-day="8"><span class="cal-d">24</span><span class="cal-ev">22:00 おとよ 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-wed" data-goto-day="9"><span class="cal-d">25</span><span class="cal-ev">22:00 はな 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-thu" data-goto-day="10"><span class="cal-d">26</span><span class="cal-ev">22:00 おとよ 売上別月報会</span></a><a class="cal-cell" href="#w2-fri" data-goto-day="11"><span class="cal-d">27</span><span class="cal-ev"></span></a><a class="cal-cell" href="#w2-sat" data-goto-day="12"><span class="cal-d">28</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-sun" data-goto-day="13"><span class="cal-d">29</span><span class="cal-ev">22:00 しほ 売上別月報会</span></a></div></section>
+  <section class="panel">
+    <h2>📑 目次（押すと、その日までスクロールします）</h2>
+    <div class="toc-label">1週目</div>
+    <div class="toc"><a href="#w1-mon" data-goto-day="0">月</a><a href="#w1-tue" data-goto-day="1">火</a><a href="#w1-wed" data-goto-day="2">水</a><a href="#w1-thu" data-goto-day="3">木</a><a href="#w1-fri" data-goto-day="4">金</a><a href="#w1-sat" data-goto-day="5">土</a><a href="#w1-sun" data-goto-day="6">日</a></div>
+    <div class="toc-label">2週目</div>
+    <div class="toc"><a href="#w2-mon" data-goto-day="7">月</a><a href="#w2-tue" data-goto-day="8">火</a><a href="#w2-wed" data-goto-day="9">水</a><a href="#w2-thu" data-goto-day="10">木</a><a href="#w2-fri" data-goto-day="11">金</a><a href="#w2-sat" data-goto-day="12">土</a><a href="#w2-sun" data-goto-day="13">日</a></div>
+    <a class="room-btn cherry" style="max-width:460px; margin-top:8px" href="#report1">📝 日報部屋への投稿（振り返りの型）へジャンプ ↓</a>
+  </section>
+  </main>
+  <main data-view="rooms">
+  <section class="panel" style="border:2px solid var(--cherry); background:#fff5f8">
+    <h2>📌 売上別部屋について（大事な案内）</h2>
+    <ul class="p-list" style="margin-bottom:10px">
+      <li>「今週の1本」は、<b>売上別部屋でのみ</b>配信されます</li>
+      <li>売上別部屋の中でしかやらない企画もあります</li>
+      <li>入れるのは、<b>全体連絡部屋のアンケート</b>に答えた方だけです</li>
+      <li>見たい方は、まずアンケートに答えてくださいね</li>
+    </ul>
+    <a class="room-btn cherry" style="max-width:420px" href="https://discord.com/channels/1400630282964701254/1400785059312701470" target="_blank" rel="noopener">全体連絡部屋へ（アンケートはこちら） →</a>
+    <h2 style="margin-top:18px">売上別部屋はこちら（自分の売上帯の部屋へ）</h2>
+    <div class="rooms">
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1467760706538700943" target="_blank" rel="noopener">#0-5万円 →</a>
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404454900716404867" target="_blank" rel="noopener">#5-10万円 →</a>
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455013228478514" target="_blank" rel="noopener">#10-20万円 →</a>
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455058296279181" target="_blank" rel="noopener">#20-30万円 →</a>
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455112134365307" target="_blank" rel="noopener">#30-50万円 →</a>
+      <a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1404455692185899039" target="_blank" rel="noopener">#50万円以上 →</a>
+    </div>
+    <p class="note" style="margin-top:8px">※ アンケートに答えていないと、売上別部屋には参加できません。</p>
+  </section>
+  <section class="panel">
+    <h2>🔗 いつでも使う行き先（部屋リンク集）</h2>
+    <div class="rooms"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400785237931331676" target="_blank" rel="noopener">🎥 #ズームリンク部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">🗂 #アーカイブ部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1408439269042950297" target="_blank" rel="noopener">🌸 #月報報告部屋 →</a></div>
+    <p class="note">毎月20日の「今月のテーマ」は、自分の売上帯の部屋（#0-5万円／#5-10万円）で話し合います。</p>
+  </section>
+  </main>
+  <main data-view="report">
   <section class="panel" id="report1" style="margin-top:14px">
     <h2>📝 1週目の振り返り報告（日曜・10分 → 日報タスク部屋へ）</h2>
     <p style="margin:0; font-size:14px">型をコピーして、<b>日報タスク部屋</b>に投稿してください（このページには書きません）。</p>
@@ -349,7 +379,6 @@
       <a class="room-btn" style="display:inline-block" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">日報タスク部屋へ →</a>
     </div>
   </section>
-
   <section class="panel" id="report2" style="margin-top:14px">
     <h2>📝 2週目の振り返り報告（最終日・10分 → 日報タスク部屋へ）</h2>
     <p style="margin:0; font-size:14px">型をコピーして、<b>日報タスク部屋</b>に投稿してください（このページには書きません）。</p>
@@ -363,7 +392,6 @@
       <a class="room-btn" style="display:inline-block" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">日報タスク部屋へ →</a>
     </div>
   </section>
-
   <section class="panel">
     <div class="btns">
       
@@ -372,13 +400,11 @@
     <p class="note">※ ルール：全部できなくて大丈夫です。日曜は「休む」も成功扱い。止まっても、次の月曜からまた始められます。<br>
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
-
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v17）</footer>
+  </main>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v18）</footer>
 </div>
 
 <script>
-/* チェックの保存だけの小さなスクリプト。本文・カード・リンクはすべて静的HTMLなので、
-   このスクリプトが動かない環境でも内容は全部表示され、リンクも使えます。 */
 (function(){
   var KEY = "rmc-2week-compass-v3";
   var state = {};
@@ -416,12 +442,53 @@
   mains.forEach(function(cb){ cb.addEventListener("change", renderProgress); });
   renderProgress();
   var reset = document.getElementById("resetBtn");
-  if (reset) reset.addEventListener("click", function(){ setTimeout(renderProgress, 0); });
   if (reset) reset.addEventListener("click", function(){
     if (!confirm("チェックをすべて消します。よろしいですか？")) return;
     state = {}; save();
     document.querySelectorAll('input[type="checkbox"][data-key]').forEach(function(cb){ cb.checked = false; });
+    renderProgress();
   });
+
+  /* ===== v18: ビュー切替とDay選択 ===== */
+  var overlay = document.getElementById("menuOverlay");
+  document.getElementById("menuBtn").addEventListener("click", function(){ overlay.classList.add("open"); });
+  document.getElementById("menuClose").addEventListener("click", function(){ overlay.classList.remove("open"); });
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) overlay.classList.remove("open"); });
+  function showView(name){
+    document.querySelectorAll("[data-view]").forEach(function(v){ v.classList.toggle("active", v.dataset.view === name); });
+    document.querySelectorAll("[data-view-btn]").forEach(function(b){ b.classList.toggle("active", b.dataset.viewBtn === name); });
+    overlay.classList.remove("open");
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+  document.querySelectorAll("[data-view-btn]").forEach(function(b){
+    b.addEventListener("click", function(){ showView(b.dataset.viewBtn); });
+  });
+  var days = document.querySelectorAll(".day");
+  var sel = document.getElementById("daySelect");
+  function showDay(i){
+    days.forEach(function(d, j){ d.classList.toggle("current", i === j); });
+    if (sel) sel.value = String(i);
+    state.sel = i; save();
+  }
+  if (sel) sel.addEventListener("change", function(){ showDay(Number(sel.value)); });
+  document.querySelectorAll("[data-goto-day]").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      showView("today");
+      showDay(Number(a.dataset.gotoDay));
+    });
+  });
+  function initialDay(){
+    var now = new Date();
+    var start = new Date(2026, 10, 16);
+    var diff = Math.floor((new Date(now.getFullYear(), now.getMonth(), now.getDate()) - start) / 86400000);
+    if (diff >= 0 && diff <= 13) return diff;  /* 期間中は常に今日のDay */
+    if (typeof state.sel === "number") return state.sel;
+    for (var i = 0; i < mains.length; i++) if (!mains[i].checked) return i;
+    return 0;
+  }
+  showDay(initialDay());
+  showView("today");
 })();
 </script>
 <a class="to-top" href="#top">⬆ トップへ戻る</a>
