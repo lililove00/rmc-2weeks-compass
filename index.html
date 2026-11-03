@@ -125,6 +125,17 @@
   html.js [data-view].active{display:block}
   html.js .day{display:none}
   html.js .day.current{display:flex}
+  .view-heading{margin:2px 2px 14px}
+  .view-heading .eyebrow{letter-spacing:.18em; font-size:11.5px; font-weight:800; color:var(--mint)}
+  .view-heading h2{font-size:21px; margin:2px 0 4px}
+  .view-heading p{margin:0; color:var(--sub); font-size:13.5px}
+  .night-step{background:#33322e; color:#fdfbf7; border-radius:16px; padding:16px 18px; margin-top:16px}
+  .night-step b{font-size:15.5px}
+  .night-step p{margin:4px 0 12px; font-size:13.5px; color:#e8e2d6}
+  button.secondary{display:block; width:100%; margin-top:12px; background:#fff; border:1.5px solid var(--line);
+    border-radius:99px; padding:12px; font-weight:700; font-size:14.5px; cursor:pointer}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+    outline:3px solid #b0526f; outline-offset:2px}
 </style>
 </head>
 <body>
@@ -297,8 +308,15 @@
   </div>
 </div>
   </div>
+  <div class="night-step">
+    <b>最後に｜日報で報告</b>
+    <p>いつもの日報に「2週間シート Day◯ ☑」を1行追加するだけです。</p>
+    <a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 日報タスク部屋へ →</a>
+  </div>
+  <button class="secondary" data-view-btn="about">はじめての方へ：全体説明・使い方を見る</button>
   </main>
   <main data-view="about">
+  <div class="view-heading"><span class="eyebrow">ABOUT</span><h2>全体説明・使い方</h2><p>はじめての方はこちら。企画の内容と進み方、全体像と進み具合です。</p></div>
   <section class="panel"><p style="margin:0; font-size:14px"><span style="display:inline-block; background:#f2789c; color:#fff; font-size:12px; font-weight:700; border-radius:99px; padding:3px 14px; margin-bottom:8px">セカンド企画</span><br><b>🧭 RMC 2週間コンパス</b>（しほが考えた、2つ目の企画です）<br>曜日ごとに「今日やること」と「行く部屋」が決まっているカレンダーです。各ボタンからディスコードへ！</p></section>
   <section class="panel" id="overview">
     <h2>🗺 2週間の全体像（まずここだけ見ればOK）</h2>
@@ -331,6 +349,7 @@
   </section>
   </main>
   <main data-view="list">
+  <div class="view-heading"><span class="eyebrow">2 WEEKS</span><h2>2週間の⼀覧</h2><p>Day1〜14と、授業・添削会などの日程をまとめて確認できます。</p></div>
   <section class="panel"><h2>📅 日程カレンダー（11/16〜11/29）</h2><p class="note" style="margin:0 0 8px">授業・添削会・月報会・作業会のある日です。日付を押すと、その日のカードへ飛びます。詳しい告知は #スケジュール で確認してください。</p><div class="cal-head"><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span><span>日</span></div><div class="cal-row"><a class="cal-cell has-ev" href="#w1-mon" data-goto-day="0"><span class="cal-d">16</span><span class="cal-ev">23:00 作業会【10-30万】</span></a><a class="cal-cell has-ev" href="#w1-tue" data-goto-day="1"><span class="cal-d">17</span><span class="cal-ev">10:00 おとよ 全体授業</span></a><a class="cal-cell has-ev" href="#w1-wed" data-goto-day="2"><span class="cal-d">18</span><span class="cal-ev">23:00 作業会【30万〜】</span></a><a class="cal-cell has-ev" href="#w1-thu" data-goto-day="3"><span class="cal-d">19</span><span class="cal-ev">22:00 おとよ 全体添削会</span></a><a class="cal-cell has-ev" href="#w1-fri" data-goto-day="4"><span class="cal-d">20</span><span class="cal-ev">11:00 売上別テーマ</span></a><a class="cal-cell" href="#w1-sat" data-goto-day="5"><span class="cal-d">21</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w1-sun" data-goto-day="6"><span class="cal-d">22</span><span class="cal-ev">10:00 しほ 全体添削会</span></a></div><div class="cal-row"><a class="cal-cell" href="#w2-mon" data-goto-day="7"><span class="cal-d">23</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-tue" data-goto-day="8"><span class="cal-d">24</span><span class="cal-ev">22:00 おとよ 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-wed" data-goto-day="9"><span class="cal-d">25</span><span class="cal-ev">22:00 はな 売上別添削会</span></a><a class="cal-cell has-ev" href="#w2-thu" data-goto-day="10"><span class="cal-d">26</span><span class="cal-ev">22:00 おとよ 売上別月報会</span></a><a class="cal-cell" href="#w2-fri" data-goto-day="11"><span class="cal-d">27</span><span class="cal-ev"></span></a><a class="cal-cell" href="#w2-sat" data-goto-day="12"><span class="cal-d">28</span><span class="cal-ev"></span></a><a class="cal-cell has-ev" href="#w2-sun" data-goto-day="13"><span class="cal-d">29</span><span class="cal-ev">22:00 しほ 売上別月報会</span></a></div></section>
   <section class="panel">
     <h2>📑 目次（押すと、その日までスクロールします）</h2>
@@ -342,6 +361,7 @@
   </section>
   </main>
   <main data-view="rooms">
+  <div class="view-heading"><span class="eyebrow">ROOMS</span><h2>部屋・アンケート</h2><p>売上別部屋と、いつでも使う部屋のリンク集です。</p></div>
   <section class="panel" style="border:2px solid var(--cherry); background:#fff5f8">
     <h2>📌 売上別部屋について（大事な案内）</h2>
     <ul class="p-list" style="margin-bottom:10px">
@@ -369,6 +389,7 @@
   </section>
   </main>
   <main data-view="report">
+  <div class="view-heading"><span class="eyebrow">REPORT</span><h2>振り返り・日報の型</h2><p>日曜の振り返り報告の型です。コピーして日報タスク部屋へ。</p></div>
   <section class="panel" id="report1" style="margin-top:14px">
     <h2>📝 1週目の振り返り報告（日曜・10分 → 日報タスク部屋へ）</h2>
     <p style="margin:0; font-size:14px">型をコピーして、<b>日報タスク部屋</b>に投稿してください（このページには書きません）。</p>
@@ -403,7 +424,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v19）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v20）</footer>
 </div>
 
 <script>
