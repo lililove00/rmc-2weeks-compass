@@ -5,28 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RMC 2週間コンパス｜曜日ごとの行き先カレンダー</title>
 
-  <main data-view="qr">
-  <section class="panel">
-    <h2>🎟 講師用QR（講師だけ）</h2>
-    <p class="note" style="margin:0 0 8px">この画面は講師用です。<br>合言葉を入れると、授業ごとのQRが表示されます。<br>授業のときに、該当するQRだけをZoomの画面に出してください。<br>生徒さんが読み取ると、このページのスタンプカードにスタンプが付きます。</p>
-    <div id="qrGate">
-      <input type="password" id="qrPin" inputmode="numeric" autocomplete="off" placeholder="合言葉（4桁）">
-      <button class="secondary" id="qrOpenBtn" type="button" style="width:100%">QRを表示する</button>
-      <p class="note" id="qrPinMsg" style="display:none; color:#b03060; margin-top:8px">合言葉が違います。講師に確認してください。</p>
-    </div>
-    <div id="qrList" style="display:none">
-      <div class="qr-block"><h3>11/17（火）｜全体授業「AIで仕事を減らす」（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY4DIQyLlgfwJL7Ok3gAEhvbYSrtobdVZakj1E5nLiY4jpPGeXvt+L7/5/cr8mpn7p7rtBX5mReextg/8f769PvEPxJt4s8VPZfAj5ZfywM/0OYpZPAZ9h0jeBDNCT9Wxj/BH1LIDn9+IiGQBZPbscEP/q9M9As7WUQumfCf+rPGn2WjP7oSMyQobxD/xkMBnTz4D8zSf2kRJEgPHfgDnJJNpjDJPw8qmgP+hEryQDnrnttJ8C78X9D8w7TVFkQkl/q7q/5O0uawioUqgkX8QZV0PtJS3EN/5OK8/NvmFnQiMkIW+Rs3W2VBVb+2D/8b438o++wJXqbIpX4xBYr5Zvovw0PZgeD0ySNQCnjwX6Em+UEewKZ58OB/2WZEO24LXA+Ph39Q2B/bDOVnITbxP9Wwq3lE8FnFjPRfbk35i/ql7TCFbfh/e5ab0TqRY+LfYpM8TwtP8k+b/ovkEWD1AnG344IfVO+ikLrgUdbUwn/S/If6r1Ne2m7+wIb95UUlRDbzHw1vr514KrLP/G1wEIFdkFE1BTWaP1fPQuUU+cMJf1WBZxfVhfngV+el5qUGWVb/v9AClf/XINpr/qyfmjxEl6L66P/3/83PvP8FcnRCFS6ff28AAAAASUVORK5CYII=" alt="QRコード 11/17（火）"></div>
-      <div class="qr-block"><h3>11/19（木）｜全体の添削会（ストーリーズ）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/Pk3gAEo3jZLa97K1aWSpCoxm4hOA4Tsbu23Hsf/+P97fFGNdj3r3GtjOxg1Vb58vej0/vh/0rrA3jbTq+w/i9wvJx8SJhP6zdNjZsxko85+WKjv30uZ/AjAFCavYD7QiI6THHXkL2A/9hLZ64iMKPDP6Tf9Lyn1OGfzj2rxfeAuCkgX+AJ2I2JmMhorgWJeyffpG/bocw0kGs4EQC+HF6OwOZKbgo9IjgH3biCgh75xXgLkT48zD/UgKlljjJSCr6J/1/i0szigGhqcI/xuAF2+RxEv+ICA38w+dezJkq9DmCBv4T8IF/CiFKoEfUSfi/0I5EAOSbFv/vRW+X4Ennp4oW4Z92Neov5CxjIMvoz865iRwvIr3OckxEP6/TEvqBkJD+iZmVu1N83l3pTET/OGtGCrabhZgxeEXyV/O/Vf8hSxgcYarULy/arPyVl6JSf2XB7lTO4KJUETL8n9FKCUr9T+av0kAj/zIEnuLFe1Op/1D6sytHRrFM/4f9h04Hr1ym039jzqX+J6iODn+y/k3+9Ma/Ev+Pdn5VXg0hKfuBfxYvLMS0/r+w7XwSOeyfa/Wf+cnOw/MXSYb///9vfmb/G2O3Ta+2QNxHAAAAAElFTkSuQmCC" alt="QRコード 11/19（木）"></div>
-      <div class="qr-block"><h3>11/22（日）｜全体の添削会（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB0UlEQVR42u1ZQY4DMQhD5QF5Ur6eJ80DIlGwyeyceltVlhpFVTu5QMYY41p8XNt+5/98flkuv2buuKaNqN/8tLlf9nl9+zzjn5mHR1S0lUhllA/zSX5KxJ+ReyzEvCoF5JKJuFD8eAv5hblsvfiNsC/MjNCKv/Cf0eLaM4XCEipCBP9//PPcMvzDddnBjKEEDr9K4Ie3PQib5YATjzTwMxZTqIDN9li1DYWsEH/EyhRYsMU5iByFLIKfIpzl6F+52YjJRRL375Q9Ge3o/usAlYj+Mb9LGPqH4AeuZPDD5pWw583fL0JFP2ySZ4mHVSoCVaCBfxQvJRD5E+IftSzC/+R8di6UrSnxfzRacPMLu4gon4jUL2ED5J+MdpVAiOC/0d610O2gO7KKfmP/3Ry+2LmE8A8KDXQuyjnoBxH+f3SuYiEMAuQfl6nfk8josZFTpIp+A+HHQ/8HJwIN/iwTzrynGHgOmHxl+B9qmYabHyGHolDxD9t/4AhM/ODhlPIfWoUW5xQLTRn89/2zBIKNuO1omfkl0HZpHi66iKHn367bfIhjhwr550yBJdz6Tcn/5/AYMJ+t7SAp/IMwT0cICjkl/rH2TM7kpeL//P7f/Ob5G4DkMFRi2zqrAAAAAElFTkSuQmCC" alt="QRコード 11/22（日）"></div>
-      <div class="qr-block"><h3>11/24（火）｜売上別添削会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAABzElEQVR42u1ZwY0EIQyLLgVQ0rSekigAiUvsZB/32N9pZWlHaDSCjyG2MYzdt8+x7/g/j2/Lx2/kOzt821k1Ur32nB97/3x6PPE/BfsGmyX4/SRyv/Uhgb/QbnN8sAo5C/bo4Ee7cZIzVhSSw5/vEsTKFpiODH7KFu+HH8UfGf7Df/bzp8n4D59a9piPKkT7qwb/jcpN2tCLjrFTAj9Xns7TEnb2LAX8QO4kT75BflroEeE/nDPg+U8XAkRS2X8POG8rWAVoobdjifXHnnXbS1cXgilOQ78baa3SKLaz8R8R/lfmhFqRoldgCvCiraLfQt6YKzzEKxRJ6JdsLwkM85X8f04rHXhWFwIS0OC/t/mbQQXWWhDJn7fZXg3m2ZOCKYnk597CGJsPjsA6+acP7Aw8PQtUQcP/cWFC80HmwY5M8Yrgd7IdZ5ZJ1Bdy0OB/pWWypfM/zT9Uzl9cdgJGFqoUIeP/9ElIgPnfW9Gmsv4+EuARPgsxg0L3D0wRYXNybCNSuf/hbmV9lp8rIKX7Nx/lMv/3vqBz/zn5P4b/Kv4/+IHcZxakkBD+M+EZKuamoPT/5SK2HTCnL6LF7p+NmdNQhatz//P9v/m58V8ZV0vtiHhNPAAAAABJRU5ErkJggg==" alt="QRコード 11/24（火）"></div>
-      <div class="qr-block"><h3>11/25（水）｜売上別添削会（30万円以上）（はなさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY7EMAhD2wfkSf06T8oDIrFgh3S0h7mtRpYmqkaZ5gLEGEMt3q5l3/N/Pp+W6wqP8CvimrZGndRbu9ePvV+fPk/777Q27acXto2/05c8krC/rJ12zfzNvS270wu+0bEfxg9P4wMQkrO/9pkQIx+HOzL2F/77N80u/Gf8ZfAP/pn3n0eGf7gmCKc2dq6j4KSB/2LOZZW2GfOoPV+K2D+qeDGRG/z1pnJZAD9+yIdeVNhxF0sE/+T8hr2TResuRPiTaE8UATbBXMCliMR/MODg0uEovjdVnAT+qTypOQtI03gjS0R/Wscf+rPSmaDSwH9syw9/rhdRJKEfqHkCmIcKleL/rZy74RpO8CAFJPBTmIcXVolALyAeRPDvTwsA8jxF+RLhTwT8yGYwPwqxiv4hBSXy2QhHp4MK/0OtOQUbhZAxeUX0A7vFqy/icUGDP08VQM0tOUTyd5X+C1dQmrMbSecgRWX+dr0U363lzjhFIv4Tys1O8+J9KDR/MMw83bpzZBbLzH8wuX3agVPLZOZvtlEELURQqejPnj/bHv5s/Kvwf7cqbOF3FdgQUrKf4nlEc1FofX/ZjTCQswfRUvNn/u1ZEEuYDv9/v29+5vwXMH5EcGyV5N0AAAAASUVORK5CYII=" alt="QRコード 11/25（水）"></div>
-      <div class="qr-block"><h3>11/26（木）｜売上別月報会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/nSTwAKXWcZFr1sLdqZWlHaMUyFxMcx2HMXz7XPu//+f0xPMM3JsN9HLsz3sSqrftlr593vwf+BbTAj2ETw7EC5NgLJhL4Ay2CzwlWLn6n54oO/hiIP8A7KaSGn3MkBLYwN7cjgz/4378xkLyIvwz/qT9n/Rky+pPPoYTWpI4j6KTB/wAfyjOdyhlZzEUJ/JW24HyIT5EfZ4FEVsCf0Z6biRy/EXaexRXhf+Ccu1WIYSeRVOrvzfpLC0H+4ESqHGvgn+Q/K2+Aj+K70sVJ8D/9GxMhthMWtI2QBH7GfKdyViKTVDr198d/pvN/TJ0E/tEBT+aL6T/Bp/O3FtLYi4noD2UzE5YlmLugedDgv+/RbG/xrMUhop8V8Eph9u9PIdbwb5vk2S1EQSQZ/We3+8vzlCPioWj4t6xcw+vaJyuy8RZCgz9hGKp5YfBpqlNIRfp32gb2kqdchIz+s+A+xdeTSBQilfhTcOifyXx6OVO7f1jlP7tzLCFSuf9xSmiJz+4rIKn7t1O9QDq6qgtK97fG+5Pd/FfR/25Vgvl7ZOfVFBLCn5Urm5duxJS+v+Rni/T/SSet++f8+zQyrqI/n++b73z/DcMGOj6wSPQ9AAAAAElFTkSuQmCC" alt="QRコード 11/26（木）"></div>
-      <div class="qr-block"><h3>11/29（日）｜売上別月報会（0〜10万円）（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1ElEQVR42u1ZwW3EMAwT6gE8UlbXSDeAAFUi5aT93K84EKgRHHL2h7YpilIs346w//U/Xn9ZjZVuO23Xr2f6el09a1d82fvx6fXCf9U+CnBvoUbj59+sJQn8dc7rVVeQPPawq+6iZ6Tw92kX+O1ELoY/s98rILZjC0r4m/CI5odInNHAD/3pA//1yOgPB24h9rwU8tFXGf1s2Sn8pFCcjKCBH+LTmtkXURJUaW1mFPjjc+ZFnvRE5oKQZqjwv6/goT02krwaDf2B7WHwThTgUfEPjXM3iwL+h1EcMEIq/Cm1uTmT0CIaIQn+EHDw/A3JayddhAR/Hrdg130L3IgG/pMCFhMZChkKkQR/Onip9gUbdoj4NfSnI7dh03mGsfJq/6CC//GcI55nUkM//TjPYT6elPE/yF/kfBhjmUbUdPwP3Np+jNBdyGvoDxoOfF/Hji6Z+mVKmHP4zhKeLlSnfvc4mo/Ky2GBZPonyW7JXf/CP6+UqR8N/vloqZ9Fpf6DdRSjCvghRDL9H7gIVu5MXpMIdPpvawrJY6QRDjr9T5y/jX6S/CaFHy3oyV/DKKn+89SPLZvUolT6/gILyl3g/IXiF/pzbOeUXei/idQv/983P7j+DUWkXW9/C3K6AAAAAElFTkSuQmCC" alt="QRコード 11/29（日）"></div>
-    </div>
-  </section>
-  </main>
-
-<script>document.documentElement.className += ' js';</script>
+  <script>document.documentElement.className += ' js';</script>
 <style>
   :root{--mint:#5fbfa8; --mint-soft:#e6f6f1; --cherry:#f2789c; --cherry-soft:#fdeef3;
     --ink:#33322e; --sub:#7a766c; --line:#eee7dd; --bg:#fffaf4; --card:#ffffff; --blue:#6a8fd0;}
@@ -454,6 +433,18 @@
   <main data-view="about">
   <div class="view-heading"><span class="eyebrow">ABOUT</span><h2>全体説明・使い方</h2><p>はじめての方はこちら。<br>企画の内容と進み方、全体像と進み具合です。</p></div>
   <section class="panel"><p style="margin:0; font-size:14px"><span style="display:inline-block; background:#f2789c; color:#fff; font-size:12px; font-weight:700; border-radius:99px; padding:3px 14px; margin-bottom:8px">セカンド企画</span><br><b>🧭 RMC 2週間コンパス</b>（しほが考えた、2つ目の企画です）<br>曜日ごとに「今日やること」と「作業する部屋」が決まっているカレンダーです。<br>各ボタンからディスコードへ！</p></section>
+  <section class="panel">
+    <h2>🎟 スタンプのおしかた</h2>
+    <div class="steps" style="grid-template-columns:1fr">
+      <div class="step"><b>1. 授業に参加する</b>授業・添削会・月報会が対象です</div>
+      <div class="step"><b>2. 「📷 QRコードを読み取る」を押す</b>メイン画面の「🎟 スタンプカード」にあります。カメラが起動します</div>
+      <div class="step"><b>3. 講師が出すQRを写す</b>読み取ると、その場でスタンプが付きます</div>
+      <div class="step"><b>4. 付けば完了です</b>枠に赤いスタンプが付いて、メッセージが出ます</div>
+    </div>
+    <div class="sample-row"><div class="sample-slot got"><span class="sample-seal">サンプル</span><span class="sample-date">◯/◯</span><span class="sample-name">押せた状態です</span></div><div class="sample-slot"><span class="sample-dot">・</span><span class="sample-date">◯/◯</span><span class="sample-name">まだ押せていません</span></div><div class="sample-slot"><span class="sample-dot">・</span><span class="sample-date">◯/◯</span><span class="sample-name">まだ押せていません</span></div></div>
+    <p class="note" style="text-align:center; margin:0">▲ QRを読み取ると、左のように赤いスタンプが付きます（画像はサンプルです）</p>
+    <p class="note" style="margin-top:8px">スタンプを押せるのは、授業中にQRコードが出ている間だけです。<br>記録は、この端末の中だけに保存されます。</p>
+  </section>
   <section class="panel" id="overview">
     <h2>🗺 2週間の全体像（まずここだけ見ればOK）</h2>
     <div class="steps" style="grid-template-columns:repeat(2,1fr)">
@@ -470,18 +461,6 @@
       <a href="#w1-sat" data-goto-day="5"><span class="rhythm-d" style="background:#7a9be0">土</span><span class="rcol"><span>🎬 授業を1本見る</span><span><b class="rplus">＋</b> ✍️ アウトプットを出す</span></span></a>
       <a href="#w1-sun" data-goto-day="6"><span class="rhythm-d" style="background:#8bc48a">日</span><span class="rcol"><span>🌿 10分ふり返り</span><span><b class="rarr">→</b> 📮 日報で報告</span></span></a>
     </div>
-  </section>
-  <section class="panel">
-    <h2>🎟 スタンプのおしかた</h2>
-    <div class="steps" style="grid-template-columns:1fr">
-      <div class="step"><b>1. 授業に参加する</b>授業・添削会・月報会が対象です</div>
-      <div class="step"><b>2. 「📷 QRコードを読み取る」を押す</b>メイン画面の「🎟 スタンプカード」にあります。カメラが起動します</div>
-      <div class="step"><b>3. 講師が出すQRを写す</b>読み取ると、その場でスタンプが付きます</div>
-      <div class="step"><b>4. 付けば完了です</b>枠に赤いスタンプが付いて、メッセージが出ます</div>
-    </div>
-    <div class="sample-row"><div class="sample-slot got"><span class="sample-seal">サンプル</span><span class="sample-date">◯/◯</span><span class="sample-name">押せた状態です</span></div><div class="sample-slot"><span class="sample-dot">・</span><span class="sample-date">◯/◯</span><span class="sample-name">まだ押せていません</span></div><div class="sample-slot"><span class="sample-dot">・</span><span class="sample-date">◯/◯</span><span class="sample-name">まだ押せていません</span></div></div>
-    <p class="note" style="text-align:center; margin:0">▲ QRを読み取ると、左のように赤いスタンプが付きます（画像はサンプルです）</p>
-    <p class="note" style="margin-top:8px">スタンプを押せるのは、授業の当日と翌日だけです。<br>記録は、この端末の中だけに保存されます。</p>
   </section>
   <section class="panel">
     <h2>この企画について・使い方</h2>
@@ -632,7 +611,6 @@
 </div>
   </div>
 
-  <a class="room-btn cherry" style="max-width:460px; margin:10px auto 0" href="#report1">📝 日報部屋への投稿（振り返りの型）へジャンプ ↓</a>
   </section>
   </main>
   <main data-view="rooms">
@@ -699,7 +677,27 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v55）</footer>
+<main data-view="qr">
+  <section class="panel">
+    <h2>🎟 講師用QR（講師だけ）</h2>
+    <p class="note" style="margin:0 0 8px">この画面は講師用です。<br>合言葉を入れると、授業ごとのQRが表示されます。<br>授業のときに、該当するQRだけをZoomの画面に出してください。<br>生徒さんが読み取ると、このページのスタンプカードにスタンプが付きます。</p>
+    <div id="qrGate" style="text-align:center">
+      <input type="password" id="qrPin" inputmode="numeric" autocomplete="off" placeholder="合言葉（4桁）" style="display:block; width:100%; max-width:320px; margin:0 auto 10px; text-align:center; box-sizing:border-box">
+      <button class="secondary" id="qrOpenBtn" type="button" style="display:block; width:100%; max-width:320px; margin:0 auto">QRを表示する</button>
+      <p class="note" id="qrPinMsg" style="display:none; color:#b03060; margin-top:8px">合言葉が違います。講師に確認してください。</p>
+    </div>
+    <div id="qrList" style="display:none">
+      <div class="qr-block"><h3>11/17（火）｜全体授業「AIで仕事を減らす」（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY4DIQyLlgfwJL7Ok3gAEhvbYSrtobdVZakj1E5nLiY4jpPGeXvt+L7/5/cr8mpn7p7rtBX5mReextg/8f769PvEPxJt4s8VPZfAj5ZfywM/0OYpZPAZ9h0jeBDNCT9Wxj/BH1LIDn9+IiGQBZPbscEP/q9M9As7WUQumfCf+rPGn2WjP7oSMyQobxD/xkMBnTz4D8zSf2kRJEgPHfgDnJJNpjDJPw8qmgP+hEryQDnrnttJ8C78X9D8w7TVFkQkl/q7q/5O0uawioUqgkX8QZV0PtJS3EN/5OK8/NvmFnQiMkIW+Rs3W2VBVb+2D/8b438o++wJXqbIpX4xBYr5Zvovw0PZgeD0ySNQCnjwX6Em+UEewKZ58OB/2WZEO24LXA+Ph39Q2B/bDOVnITbxP9Wwq3lE8FnFjPRfbk35i/ql7TCFbfh/e5ab0TqRY+LfYpM8TwtP8k+b/ovkEWD1AnG344IfVO+ikLrgUdbUwn/S/If6r1Ne2m7+wIb95UUlRDbzHw1vr514KrLP/G1wEIFdkFE1BTWaP1fPQuUU+cMJf1WBZxfVhfngV+el5qUGWVb/v9AClf/XINpr/qyfmjxEl6L66P/3/83PvP8FcnRCFS6ff28AAAAASUVORK5CYII=" alt="QRコード 11/17（火）"></div>
+      <div class="qr-block"><h3>11/19（木）｜全体の添削会（ストーリーズ）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/Pk3gAEo3jZLa97K1aWSpCoxm4hOA4Tsbu23Hsf/+P97fFGNdj3r3GtjOxg1Vb58vej0/vh/0rrA3jbTq+w/i9wvJx8SJhP6zdNjZsxko85+WKjv30uZ/AjAFCavYD7QiI6THHXkL2A/9hLZ64iMKPDP6Tf9Lyn1OGfzj2rxfeAuCkgX+AJ2I2JmMhorgWJeyffpG/bocw0kGs4EQC+HF6OwOZKbgo9IjgH3biCgh75xXgLkT48zD/UgKlljjJSCr6J/1/i0szigGhqcI/xuAF2+RxEv+ICA38w+dezJkq9DmCBv4T8IF/CiFKoEfUSfi/0I5EAOSbFv/vRW+X4Ennp4oW4Z92Neov5CxjIMvoz865iRwvIr3OckxEP6/TEvqBkJD+iZmVu1N83l3pTET/OGtGCrabhZgxeEXyV/O/Vf8hSxgcYarULy/arPyVl6JSf2XB7lTO4KJUETL8n9FKCUr9T+av0kAj/zIEnuLFe1Op/1D6sytHRrFM/4f9h04Hr1ym039jzqX+J6iODn+y/k3+9Ma/Ev+Pdn5VXg0hKfuBfxYvLMS0/r+w7XwSOeyfa/Wf+cnOw/MXSYb///9vfmb/G2O3Ta+2QNxHAAAAAElFTkSuQmCC" alt="QRコード 11/19（木）"></div>
+      <div class="qr-block"><h3>11/22（日）｜全体の添削会（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB0UlEQVR42u1ZQY4DMQhD5QF5Ur6eJ80DIlGwyeyceltVlhpFVTu5QMYY41p8XNt+5/98flkuv2buuKaNqN/8tLlf9nl9+zzjn5mHR1S0lUhllA/zSX5KxJ+ReyzEvCoF5JKJuFD8eAv5hblsvfiNsC/MjNCKv/Cf0eLaM4XCEipCBP9//PPcMvzDddnBjKEEDr9K4Ie3PQib5YATjzTwMxZTqIDN9li1DYWsEH/EyhRYsMU5iByFLIKfIpzl6F+52YjJRRL375Q9Ge3o/usAlYj+Mb9LGPqH4AeuZPDD5pWw583fL0JFP2ySZ4mHVSoCVaCBfxQvJRD5E+IftSzC/+R8di6UrSnxfzRacPMLu4gon4jUL2ED5J+MdpVAiOC/0d610O2gO7KKfmP/3Ry+2LmE8A8KDXQuyjnoBxH+f3SuYiEMAuQfl6nfk8josZFTpIp+A+HHQ/8HJwIN/iwTzrynGHgOmHxl+B9qmYabHyGHolDxD9t/4AhM/ODhlPIfWoUW5xQLTRn89/2zBIKNuO1omfkl0HZpHi66iKHn367bfIhjhwr550yBJdz6Tcn/5/AYMJ+t7SAp/IMwT0cICjkl/rH2TM7kpeL//P7f/Ob5G4DkMFRi2zqrAAAAAElFTkSuQmCC" alt="QRコード 11/22（日）"></div>
+      <div class="qr-block"><h3>11/24（火）｜売上別添削会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAABzElEQVR42u1ZwY0EIQyLLgVQ0rSekigAiUvsZB/32N9pZWlHaDSCjyG2MYzdt8+x7/g/j2/Lx2/kOzt821k1Ur32nB97/3x6PPE/BfsGmyX4/SRyv/Uhgb/QbnN8sAo5C/bo4Ee7cZIzVhSSw5/vEsTKFpiODH7KFu+HH8UfGf7Df/bzp8n4D59a9piPKkT7qwb/jcpN2tCLjrFTAj9Xns7TEnb2LAX8QO4kT75BflroEeE/nDPg+U8XAkRS2X8POG8rWAVoobdjifXHnnXbS1cXgilOQ78baa3SKLaz8R8R/lfmhFqRoldgCvCiraLfQt6YKzzEKxRJ6JdsLwkM85X8f04rHXhWFwIS0OC/t/mbQQXWWhDJn7fZXg3m2ZOCKYnk597CGJsPjsA6+acP7Aw8PQtUQcP/cWFC80HmwY5M8Yrgd7IdZ5ZJ1Bdy0OB/pWWypfM/zT9Uzl9cdgJGFqoUIeP/9ElIgPnfW9Gmsv4+EuARPgsxg0L3D0wRYXNybCNSuf/hbmV9lp8rIKX7Nx/lMv/3vqBz/zn5P4b/Kv4/+IHcZxakkBD+M+EZKuamoPT/5SK2HTCnL6LF7p+NmdNQhatz//P9v/m58V8ZV0vtiHhNPAAAAABJRU5ErkJggg==" alt="QRコード 11/24（火）"></div>
+      <div class="qr-block"><h3>11/25（水）｜売上別添削会（30万円以上）（はなさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY7EMAhD2wfkSf06T8oDIrFgh3S0h7mtRpYmqkaZ5gLEGEMt3q5l3/N/Pp+W6wqP8CvimrZGndRbu9ePvV+fPk/777Q27acXto2/05c8krC/rJ12zfzNvS270wu+0bEfxg9P4wMQkrO/9pkQIx+HOzL2F/77N80u/Gf8ZfAP/pn3n0eGf7gmCKc2dq6j4KSB/2LOZZW2GfOoPV+K2D+qeDGRG/z1pnJZAD9+yIdeVNhxF0sE/+T8hr2TResuRPiTaE8UATbBXMCliMR/MODg0uEovjdVnAT+qTypOQtI03gjS0R/Wscf+rPSmaDSwH9syw9/rhdRJKEfqHkCmIcKleL/rZy74RpO8CAFJPBTmIcXVolALyAeRPDvTwsA8jxF+RLhTwT8yGYwPwqxiv4hBSXy2QhHp4MK/0OtOQUbhZAxeUX0A7vFqy/icUGDP08VQM0tOUTyd5X+C1dQmrMbSecgRWX+dr0U363lzjhFIv4Tys1O8+J9KDR/MMw83bpzZBbLzH8wuX3agVPLZOZvtlEELURQqejPnj/bHv5s/Kvwf7cqbOF3FdgQUrKf4nlEc1FofX/ZjTCQswfRUvNn/u1ZEEuYDv9/v29+5vwXMH5EcGyV5N0AAAAASUVORK5CYII=" alt="QRコード 11/25（水）"></div>
+      <div class="qr-block"><h3>11/26（木）｜売上別月報会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/nSTwAKXWcZFr1sLdqZWlHaMUyFxMcx2HMXz7XPu//+f0xPMM3JsN9HLsz3sSqrftlr593vwf+BbTAj2ETw7EC5NgLJhL4Ay2CzwlWLn6n54oO/hiIP8A7KaSGn3MkBLYwN7cjgz/4378xkLyIvwz/qT9n/Rky+pPPoYTWpI4j6KTB/wAfyjOdyhlZzEUJ/JW24HyIT5EfZ4FEVsCf0Z6biRy/EXaexRXhf+Ccu1WIYSeRVOrvzfpLC0H+4ESqHGvgn+Q/K2+Aj+K70sVJ8D/9GxMhthMWtI2QBH7GfKdyViKTVDr198d/pvN/TJ0E/tEBT+aL6T/Bp/O3FtLYi4noD2UzE5YlmLugedDgv+/RbG/xrMUhop8V8Eph9u9PIdbwb5vk2S1EQSQZ/We3+8vzlCPioWj4t6xcw+vaJyuy8RZCgz9hGKp5YfBpqlNIRfp32gb2kqdchIz+s+A+xdeTSBQilfhTcOifyXx6OVO7f1jlP7tzLCFSuf9xSmiJz+4rIKn7t1O9QDq6qgtK97fG+5Pd/FfR/25Vgvl7ZOfVFBLCn5Urm5duxJS+v+Rni/T/SSet++f8+zQyrqI/n++b73z/DcMGOj6wSPQ9AAAAAElFTkSuQmCC" alt="QRコード 11/26（木）"></div>
+      <div class="qr-block"><h3>11/29（日）｜売上別月報会（0〜10万円）（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1ElEQVR42u1ZwW3EMAwT6gE8UlbXSDeAAFUi5aT93K84EKgRHHL2h7YpilIs346w//U/Xn9ZjZVuO23Xr2f6el09a1d82fvx6fXCf9U+CnBvoUbj59+sJQn8dc7rVVeQPPawq+6iZ6Tw92kX+O1ELoY/s98rILZjC0r4m/CI5odInNHAD/3pA//1yOgPB24h9rwU8tFXGf1s2Sn8pFCcjKCBH+LTmtkXURJUaW1mFPjjc+ZFnvRE5oKQZqjwv6/goT02krwaDf2B7WHwThTgUfEPjXM3iwL+h1EcMEIq/Cm1uTmT0CIaIQn+EHDw/A3JayddhAR/Hrdg130L3IgG/pMCFhMZChkKkQR/Onip9gUbdoj4NfSnI7dh03mGsfJq/6CC//GcI55nUkM//TjPYT6elPE/yF/kfBhjmUbUdPwP3Np+jNBdyGvoDxoOfF/Hji6Z+mVKmHP4zhKeLlSnfvc4mo/Ky2GBZPonyW7JXf/CP6+UqR8N/vloqZ9Fpf6DdRSjCvghRDL9H7gIVu5MXpMIdPpvawrJY6QRDjr9T5y/jX6S/CaFHy3oyV/DKKn+89SPLZvUolT6/gILyl3g/IXiF/pzbOeUXei/idQv/983P7j+DUWkXW9/C3K6AAAAAElFTkSuQmCC" alt="QRコード 11/29（日）"></div>
+    </div>
+  </section>
+  </main>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v59）</footer>
 </div>
 
 <script>
@@ -857,7 +855,6 @@
     if (!cls) return {text: "このQRは、スタンプの対象ではありませんでした。", ok: false};
     if (k !== cls.token) return {text: "うまく読み取れませんでした。もう一度QRを読み取るか、講師に声をかけてください。", ok: false};
     var today = jstToday();
-    if (today !== d && today !== addDays(d, 1)) return {text: "スタンプを押せるのは、授業の当日と翌日だけです。", ok: false};
     var s = load(); s.stamps = s.stamps || {};
     if (s.stamps[d]) return {text: "このスタンプは、もう付いています🎟", ok: true};
     s.stamps[d] = today; saveAll(s); renderStamps();
