@@ -4,6 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RMC 2週間コンパス｜曜日ごとの行き先カレンダー</title>
+
+  <main data-view="qr">
+  <section class="panel">
+    <h2>🎟 講師用QR（講師だけ）</h2>
+    <p class="note" style="margin:0 0 8px">この画面は講師用です。<br>合言葉を入れると、授業ごとのQRが表示されます。<br>授業のときに、該当するQRだけをZoomの画面に出してください。<br>生徒さんが読み取ると、このページのスタンプカードにスタンプが付きます。</p>
+    <div id="qrGate">
+      <input type="password" id="qrPin" inputmode="numeric" autocomplete="off" placeholder="合言葉（4桁）">
+      <button class="secondary" id="qrOpenBtn" type="button" style="width:100%">QRを表示する</button>
+      <p class="note" id="qrPinMsg" style="display:none; color:#b03060; margin-top:8px">合言葉が違います。講師に確認してください。</p>
+    </div>
+    <div id="qrList" style="display:none">
+      <div class="qr-block"><h3>11/17（火）｜全体授業「AIで仕事を減らす」（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY4DIQyLlgfwJL7Ok3gAEhvbYSrtobdVZakj1E5nLiY4jpPGeXvt+L7/5/cr8mpn7p7rtBX5mReextg/8f769PvEPxJt4s8VPZfAj5ZfywM/0OYpZPAZ9h0jeBDNCT9Wxj/BH1LIDn9+IiGQBZPbscEP/q9M9As7WUQumfCf+rPGn2WjP7oSMyQobxD/xkMBnTz4D8zSf2kRJEgPHfgDnJJNpjDJPw8qmgP+hEryQDnrnttJ8C78X9D8w7TVFkQkl/q7q/5O0uawioUqgkX8QZV0PtJS3EN/5OK8/NvmFnQiMkIW+Rs3W2VBVb+2D/8b438o++wJXqbIpX4xBYr5Zvovw0PZgeD0ySNQCnjwX6Em+UEewKZ58OB/2WZEO24LXA+Ph39Q2B/bDOVnITbxP9Wwq3lE8FnFjPRfbk35i/ql7TCFbfh/e5ab0TqRY+LfYpM8TwtP8k+b/ovkEWD1AnG344IfVO+ikLrgUdbUwn/S/If6r1Ne2m7+wIb95UUlRDbzHw1vr514KrLP/G1wEIFdkFE1BTWaP1fPQuUU+cMJf1WBZxfVhfngV+el5qUGWVb/v9AClf/XINpr/qyfmjxEl6L66P/3/83PvP8FcnRCFS6ff28AAAAASUVORK5CYII=" alt="QRコード 11/17（火）"></div>
+      <div class="qr-block"><h3>11/19（木）｜全体の添削会（ストーリーズ）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/Pk3gAEo3jZLa97K1aWSpCoxm4hOA4Tsbu23Hsf/+P97fFGNdj3r3GtjOxg1Vb58vej0/vh/0rrA3jbTq+w/i9wvJx8SJhP6zdNjZsxko85+WKjv30uZ/AjAFCavYD7QiI6THHXkL2A/9hLZ64iMKPDP6Tf9Lyn1OGfzj2rxfeAuCkgX+AJ2I2JmMhorgWJeyffpG/bocw0kGs4EQC+HF6OwOZKbgo9IjgH3biCgh75xXgLkT48zD/UgKlljjJSCr6J/1/i0szigGhqcI/xuAF2+RxEv+ICA38w+dezJkq9DmCBv4T8IF/CiFKoEfUSfi/0I5EAOSbFv/vRW+X4Ennp4oW4Z92Neov5CxjIMvoz865iRwvIr3OckxEP6/TEvqBkJD+iZmVu1N83l3pTET/OGtGCrabhZgxeEXyV/O/Vf8hSxgcYarULy/arPyVl6JSf2XB7lTO4KJUETL8n9FKCUr9T+av0kAj/zIEnuLFe1Op/1D6sytHRrFM/4f9h04Hr1ym039jzqX+J6iODn+y/k3+9Ma/Ev+Pdn5VXg0hKfuBfxYvLMS0/r+w7XwSOeyfa/Wf+cnOw/MXSYb///9vfmb/G2O3Ta+2QNxHAAAAAElFTkSuQmCC" alt="QRコード 11/19（木）"></div>
+      <div class="qr-block"><h3>11/22（日）｜全体の添削会（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB0UlEQVR42u1ZQY4DMQhD5QF5Ur6eJ80DIlGwyeyceltVlhpFVTu5QMYY41p8XNt+5/98flkuv2buuKaNqN/8tLlf9nl9+zzjn5mHR1S0lUhllA/zSX5KxJ+ReyzEvCoF5JKJuFD8eAv5hblsvfiNsC/MjNCKv/Cf0eLaM4XCEipCBP9//PPcMvzDddnBjKEEDr9K4Ie3PQib5YATjzTwMxZTqIDN9li1DYWsEH/EyhRYsMU5iByFLIKfIpzl6F+52YjJRRL375Q9Ge3o/usAlYj+Mb9LGPqH4AeuZPDD5pWw583fL0JFP2ySZ4mHVSoCVaCBfxQvJRD5E+IftSzC/+R8di6UrSnxfzRacPMLu4gon4jUL2ED5J+MdpVAiOC/0d610O2gO7KKfmP/3Ry+2LmE8A8KDXQuyjnoBxH+f3SuYiEMAuQfl6nfk8josZFTpIp+A+HHQ/8HJwIN/iwTzrynGHgOmHxl+B9qmYabHyGHolDxD9t/4AhM/ODhlPIfWoUW5xQLTRn89/2zBIKNuO1omfkl0HZpHi66iKHn367bfIhjhwr550yBJdz6Tcn/5/AYMJ+t7SAp/IMwT0cICjkl/rH2TM7kpeL//P7f/Ob5G4DkMFRi2zqrAAAAAElFTkSuQmCC" alt="QRコード 11/22（日）"></div>
+      <div class="qr-block"><h3>11/24（火）｜売上別添削会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAABzElEQVR42u1ZwY0EIQyLLgVQ0rSekigAiUvsZB/32N9pZWlHaDSCjyG2MYzdt8+x7/g/j2/Lx2/kOzt821k1Ur32nB97/3x6PPE/BfsGmyX4/SRyv/Uhgb/QbnN8sAo5C/bo4Ee7cZIzVhSSw5/vEsTKFpiODH7KFu+HH8UfGf7Df/bzp8n4D59a9piPKkT7qwb/jcpN2tCLjrFTAj9Xns7TEnb2LAX8QO4kT75BflroEeE/nDPg+U8XAkRS2X8POG8rWAVoobdjifXHnnXbS1cXgilOQ78baa3SKLaz8R8R/lfmhFqRoldgCvCiraLfQt6YKzzEKxRJ6JdsLwkM85X8f04rHXhWFwIS0OC/t/mbQQXWWhDJn7fZXg3m2ZOCKYnk597CGJsPjsA6+acP7Aw8PQtUQcP/cWFC80HmwY5M8Yrgd7IdZ5ZJ1Bdy0OB/pWWypfM/zT9Uzl9cdgJGFqoUIeP/9ElIgPnfW9Gmsv4+EuARPgsxg0L3D0wRYXNybCNSuf/hbmV9lp8rIKX7Nx/lMv/3vqBz/zn5P4b/Kv4/+IHcZxakkBD+M+EZKuamoPT/5SK2HTCnL6LF7p+NmdNQhatz//P9v/m58V8ZV0vtiHhNPAAAAABJRU5ErkJggg==" alt="QRコード 11/24（火）"></div>
+      <div class="qr-block"><h3>11/25（水）｜売上別添削会（30万円以上）（はなさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1klEQVR42u1ZQY7EMAhD2wfkSf06T8oDIrFgh3S0h7mtRpYmqkaZ5gLEGEMt3q5l3/N/Pp+W6wqP8CvimrZGndRbu9ePvV+fPk/777Q27acXto2/05c8krC/rJ12zfzNvS270wu+0bEfxg9P4wMQkrO/9pkQIx+HOzL2F/77N80u/Gf8ZfAP/pn3n0eGf7gmCKc2dq6j4KSB/2LOZZW2GfOoPV+K2D+qeDGRG/z1pnJZAD9+yIdeVNhxF0sE/+T8hr2TResuRPiTaE8UATbBXMCliMR/MODg0uEovjdVnAT+qTypOQtI03gjS0R/Wscf+rPSmaDSwH9syw9/rhdRJKEfqHkCmIcKleL/rZy74RpO8CAFJPBTmIcXVolALyAeRPDvTwsA8jxF+RLhTwT8yGYwPwqxiv4hBSXy2QhHp4MK/0OtOQUbhZAxeUX0A7vFqy/icUGDP08VQM0tOUTyd5X+C1dQmrMbSecgRWX+dr0U363lzjhFIv4Tys1O8+J9KDR/MMw83bpzZBbLzH8wuX3agVPLZOZvtlEELURQqejPnj/bHv5s/Kvwf7cqbOF3FdgQUrKf4nlEc1FofX/ZjTCQswfRUvNn/u1ZEEuYDv9/v29+5vwXMH5EcGyV5N0AAAAASUVORK5CYII=" alt="QRコード 11/25（水）"></div>
+      <div class="qr-block"><h3>11/26（木）｜売上別月報会（10〜30万円）（おとよさん）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB10lEQVR42u1ZQW4EIQyLygN4El/nSTwAKXWcZFr1sLdqZWlHaMUyFxMcx2HMXz7XPu//+f0xPMM3JsN9HLsz3sSqrftlr593vwf+BbTAj2ETw7EC5NgLJhL4Ay2CzwlWLn6n54oO/hiIP8A7KaSGn3MkBLYwN7cjgz/4378xkLyIvwz/qT9n/Rky+pPPoYTWpI4j6KTB/wAfyjOdyhlZzEUJ/JW24HyIT5EfZ4FEVsCf0Z6biRy/EXaexRXhf+Ccu1WIYSeRVOrvzfpLC0H+4ESqHGvgn+Q/K2+Aj+K70sVJ8D/9GxMhthMWtI2QBH7GfKdyViKTVDr198d/pvN/TJ0E/tEBT+aL6T/Bp/O3FtLYi4noD2UzE5YlmLugedDgv+/RbG/xrMUhop8V8Eph9u9PIdbwb5vk2S1EQSQZ/We3+8vzlCPioWj4t6xcw+vaJyuy8RZCgz9hGKp5YfBpqlNIRfp32gb2kqdchIz+s+A+xdeTSBQilfhTcOifyXx6OVO7f1jlP7tzLCFSuf9xSmiJz+4rIKn7t1O9QDq6qgtK97fG+5Pd/FfR/25Vgvl7ZOfVFBLCn5Urm5duxJS+v+Rni/T/SSet++f8+zQyrqI/n++b73z/DcMGOj6wSPQ9AAAAAElFTkSuQmCC" alt="QRコード 11/26（木）"></div>
+      <div class="qr-block"><h3>11/29（日）｜売上別月報会（0〜10万円）（しほ）</h3><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2AQAAAADNaUdlAAAB1ElEQVR42u1ZwW3EMAwT6gE8UlbXSDeAAFUi5aT93K84EKgRHHL2h7YpilIs346w//U/Xn9ZjZVuO23Xr2f6el09a1d82fvx6fXCf9U+CnBvoUbj59+sJQn8dc7rVVeQPPawq+6iZ6Tw92kX+O1ELoY/s98rILZjC0r4m/CI5odInNHAD/3pA//1yOgPB24h9rwU8tFXGf1s2Sn8pFCcjKCBH+LTmtkXURJUaW1mFPjjc+ZFnvRE5oKQZqjwv6/goT02krwaDf2B7WHwThTgUfEPjXM3iwL+h1EcMEIq/Cm1uTmT0CIaIQn+EHDw/A3JayddhAR/Hrdg130L3IgG/pMCFhMZChkKkQR/Onip9gUbdoj4NfSnI7dh03mGsfJq/6CC//GcI55nUkM//TjPYT6elPE/yF/kfBhjmUbUdPwP3Np+jNBdyGvoDxoOfF/Hji6Z+mVKmHP4zhKeLlSnfvc4mo/Ky2GBZPonyW7JXf/CP6+UqR8N/vloqZ9Fpf6DdRSjCvghRDL9H7gIVu5MXpMIdPpvawrJY6QRDjr9T5y/jX6S/CaFHy3oyV/DKKn+89SPLZvUolT6/gILyl3g/IXiF/pzbOeUXei/idQv/983P7j+DUWkXW9/C3K6AAAAAElFTkSuQmCC" alt="QRコード 11/29（日）"></div>
+    </div>
+  </section>
+  </main>
+
 <script>document.documentElement.className += ' js';</script>
 <style>
   :root{--mint:#5fbfa8; --mint-soft:#e6f6f1; --cherry:#f2789c; --cherry-soft:#fdeef3;
@@ -159,6 +181,18 @@
   .habit-cell .hw{font-size:10px; display:block}
   .habit-cell .hm{font-size:11px; display:block; height:14px}
   .habit-cell.half{background:var(--mint-soft); border-color:var(--mint)}
+  .stamp-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:8px}
+  .stamp-slot{border:2px dashed #e7ddcc; border-radius:14px; padding:10px 6px; text-align:center; background:#fbf8f3}
+  .stamp-slot .stamp-mark{font-size:22px; line-height:1.2; color:#cfc4ae}
+  .stamp-slot b{display:block; font-size:13px; margin-top:2px}
+  .stamp-slot span{font-size:11px; color:#8a8175; line-height:1.5; display:block}
+  .stamp-slot.got{border:2px solid var(--gold); background:#fdf3d8}
+  .stamp-slot.got .stamp-mark{color:var(--gold)}
+  #stampMsg{display:none; border-radius:12px; padding:12px 14px; font-weight:700; font-size:14.5px; margin:0 0 10px}
+  .qr-block{text-align:center; border-top:1.6px dashed #e7ddcc; padding:16px 0 6px; margin-top:10px}
+  .qr-block h3{font-size:14.5px; margin:0 0 8px}
+  .qr-block img{width:220px; height:220px}
+  #qrPin{width:100%; box-sizing:border-box; font-size:16px; padding:11px 12px; border:1.6px solid #e7ddcc; border-radius:12px; margin:6px 0 8px; font-family:inherit}
   .habit-cell.full{background:var(--mint); color:#fff; box-shadow:0 0 0 2px #fff, 0 0 14px rgba(95,191,168,.85)}
   .habit-cell.full .hd{color:#fff}
   .habit-stats{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
@@ -179,6 +213,7 @@
     <button class="menu-item" data-view-btn="list"><b>2週間の⼀覧</b><span>Day1〜14を確認</span></button>
     <button class="menu-item" data-view-btn="rooms"><b>部屋・アンケート</b><span>売上別部屋とリンク集</span></button>
     <button class="menu-item" data-view-btn="report"><b>振り返り・日報の型</b><span>コピーして報告</span></button>
+    <button class="menu-item" data-view-btn="qr"><b>🎟 講師用QR</b><span>講師だけ｜授業のスタンプ用QRを表示</span></button>
   </div>
 </div>
 <div class="wrap" id="top">
@@ -186,8 +221,8 @@
   <div style="margin-bottom:8px"><span style="display:inline-block; background:#57534a; color:#fff; font-size:12px; font-weight:700; border-radius:99px; padding:3px 14px">🏠 メイン（ホーム）</span></div>
   <div class="band"><div class="band-label">ONE STEP AT A TIME</div><div class="band-title">今日は、ここから。</div><p>今日やることは全部ここにあります。<br>できたらチェックして、夜は日報へ。</p><span class="band-badge">セカンド企画｜期間：11/16（月）〜11/29（日）</span></div>
   <section class="panel" style="border:2px solid var(--cherry); background:#fff5f8">
-    <h2 style="margin-top:0">📱 RMC公式アプリ（スタンプカード）</h2>
-    <p style="margin:0 0 10px; font-size:14px">授業に参加すると、アプリのスタンプカードにスタンプが貯まります。<br>まだ開いたことがない人は、一度開いてみてください。</p>
+    <h2 style="margin-top:0">📱 RMC公式アプリ</h2>
+    <p style="margin:0 0 10px; font-size:14px">スケジュールやお知らせは、公式アプリでも確認できます。<br>授業のスタンプは、このページの「🎟 スタンプカード」に付きます。</p>
     <a class="room-btn pink" style="max-width:460px" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 アプリを開く →</a>
   </section>
   <div class="panel" style="padding:14px 18px"><label for="daySelect" style="font-weight:700; font-size:15px">今日取り組むDay</label><select id="daySelect"><option value="0">Day 1｜11/16（月）</option><option value="1">Day 2｜11/17（火）</option><option value="2">Day 3｜11/18（水）</option><option value="3">Day 4｜11/19（木）</option><option value="4">Day 5｜11/20（金）</option><option value="5">Day 6｜11/21（土）</option><option value="6">Day 7｜11/22（日）</option><option value="7">Day 8｜11/23（月）</option><option value="8">Day 9｜11/24（火）</option><option value="9">Day 10｜11/25（水）</option><option value="10">Day 11｜11/26（木）</option><option value="11">Day 12｜11/27（金）</option><option value="12">Day 13｜11/28（土）</option><option value="13">Day 14｜11/29（日）</option></select><p class="note" style="margin:6px 0 0">期間中（11/16〜29）は、今日のDayが自動で選ばれます。<br>別の日を選ぶこともできます。</p></div>
@@ -210,7 +245,7 @@
   <div><span class="dow">火曜日</span><br><span class="date">Day 2｜11/17</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p>
-  <div class="event">📅 今日 10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">月曜ラジオで「いいな」と思ったことを1つ選ぶ</p></div>
   <div class="task"><p class="task-t" style="margin:0">自分の行動にしてみる（小さくてOK）</p></div>
   <div class="task"><p class="task-t">アウトプット部屋か日報に残す</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div></div>
@@ -236,7 +271,7 @@
   <div><span class="dow">木曜日</span><br><span class="date">Day 4｜11/19</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜全体の添削会（ストーリーズ）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜全体の添削会（ストーリーズ）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">講師3人のノウハウ部屋から、1つ読む</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a></div></div>
   <div class="task"><p class="task-t">アウトプット部屋に、1つ出す</p><div class="btn-stack"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a></div></div>
   <div class="task"><p class="task-t">声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</p><div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div></div>
@@ -274,7 +309,7 @@
   <div><span class="dow">日曜日</span><br><span class="date">Day 7｜11/22</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p>
-  <div class="event">📅 今日 10:00〜 しほ｜全体の添削会</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 10:00〜 しほ｜全体の添削会</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">下の「振り返り報告」の型で、日報タスク部屋に報告</p><div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report1">📝 投稿の型へジャンプ ↓</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">できなかった理由も書くと、次が組みやすくなります</p></div>
   <div class="task"><p class="task-t" style="margin:0">休むのもOKです</p></div>
@@ -300,7 +335,7 @@
   <div><span class="dow">火曜日</span><br><span class="date">Day 9｜11/24</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜売上別添削会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別添削会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">月曜ラジオで「いいな」と思ったことを1つ選ぶ</p></div>
   <div class="task"><p class="task-t" style="margin:0">自分の行動にしてみる（小さくてOK）</p></div>
   <div class="task"><p class="task-t">アウトプット部屋か日報に残す</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div></div>
@@ -313,7 +348,7 @@
   <div><span class="dow">水曜日</span><br><span class="date">Day 10｜11/25</span></div>
   <h3>🎧 おとよさんのラジオを聴く</h3>
   <p class="desc"><b>気になった一言をメモ</b></p>
-  <div class="event">📅 今日 22:00〜 はなさん｜売上別添削会（30万円以上）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 はなさん｜売上別添削会（30万円以上）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">おとよさんのラジオを聴く</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">気になった一言をメモ（それだけでOK）</p></div>
   <div class="task"><p class="task-t" style="margin:0">木曜の発言ネタにもなります</p></div>
@@ -326,7 +361,7 @@
   <div><span class="dow">木曜日</span><br><span class="date">Day 11｜11/26</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜売上別月報会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別月報会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">講師3人のノウハウ部屋から、1つ読む</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a></div></div>
   <div class="task"><p class="task-t">アウトプット部屋に、1つ出す</p><div class="btn-stack"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a></div></div>
   <div class="task"><p class="task-t">声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</p><div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div></div>
@@ -363,7 +398,7 @@
   <div><span class="dow">日曜日</span><br><span class="date">Day 14｜11/29</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p>
-  <div class="event">📅 今日 22:00〜 しほ｜売上別月報会（0〜10万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 しほ｜売上別月報会（0〜10万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">下の「振り返り報告」の型で、日報タスク部屋に報告</p><div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report2">📝 投稿の型へジャンプ ↓</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">できなかった理由も書くと、次が組みやすくなります</p></div>
   <div class="task"><p class="task-t" style="margin:0">休むのもOKです</p></div>
@@ -390,6 +425,21 @@
       <span id="habitStreak">連続記録 0日</span>
     </div>
     <p class="note" style="margin-top:8px">色の見方です。<br><b style="color:var(--mint)">光る緑＝「できた」と「日報」の両方</b>。<br>薄緑＝どちらか片方だけ。<br>日付を押すと、その日のカードへ飛びます。<br>記録は、この端末の中だけに保存されます。</p>
+  </section>
+  <section class="panel" id="stampcard" style="margin-top:16px">
+    <h2>🎟 スタンプカード（授業参加）</h2>
+    <p class="note" style="margin:0 0 10px">授業・添削会・月報会に参加したら、講師が出すQRコードを、スマホのカメラで読み取ってください。<br>読み取ると、このカードにスタンプが付きます。</p>
+    <div id="stampMsg"></div>
+    <div class="stamp-grid">
+      <div class="stamp-slot" data-stamp-date="2026-11-17"><div class="stamp-mark">・</div><b>11/17</b><span>全体授業「AIで仕事を減らす」<br>おとよさん</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-19"><div class="stamp-mark">・</div><b>11/19</b><span>全体の添削会（ストーリーズ）<br>おとよさん</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-22"><div class="stamp-mark">・</div><b>11/22</b><span>全体の添削会<br>しほ</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-24"><div class="stamp-mark">・</div><b>11/24</b><span>売上別添削会（10〜30万円）<br>おとよさん</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-25"><div class="stamp-mark">・</div><b>11/25</b><span>売上別添削会（30万円以上）<br>はなさん</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-26"><div class="stamp-mark">・</div><b>11/26</b><span>売上別月報会（10〜30万円）<br>おとよさん</span></div>
+      <div class="stamp-slot" data-stamp-date="2026-11-29"><div class="stamp-mark">・</div><b>11/29</b><span>売上別月報会（0〜10万円）<br>しほ</span></div>
+    </div>
+    <p class="note" style="margin-top:8px"><span id="stampCount">スタンプ 0/7個</span><br>記録は、この端末の中だけに保存されます。</p>
   </section>
   <button class="secondary" data-view-btn="about">はじめての方へ：全体説明・使い方を見る</button>
   </main>
@@ -450,7 +500,7 @@
   <div><span class="dow">火曜日</span><br><span class="date">Day 2｜11/17</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p>
-  <div class="event">📅 今日 10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 10:00〜 おとよさん｜全体授業「AIで仕事を減らす」</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">月曜ラジオで「いいな」と思ったことを1つ選ぶ</p></div>
   <div class="task"><p class="task-t" style="margin:0">自分の行動にしてみる（小さくてOK）</p></div>
   <div class="task"><p class="task-t">アウトプット部屋か日報に残す</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div></div>
@@ -468,7 +518,7 @@
   <div><span class="dow">木曜日</span><br><span class="date">Day 4｜11/19</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜全体の添削会（ストーリーズ）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜全体の添削会（ストーリーズ）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">講師3人のノウハウ部屋から、1つ読む</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a></div></div>
   <div class="task"><p class="task-t">アウトプット部屋に、1つ出す</p><div class="btn-stack"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a></div></div>
   <div class="task"><p class="task-t">声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</p><div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div></div>
@@ -494,7 +544,7 @@
   <div><span class="dow">日曜日</span><br><span class="date">Day 7｜11/22</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p>
-  <div class="event">📅 今日 10:00〜 しほ｜全体の添削会</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 10:00〜 しほ｜全体の添削会</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">下の「振り返り報告」の型で、日報タスク部屋に報告</p><div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report1">📝 投稿の型へジャンプ ↓</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">できなかった理由も書くと、次が組みやすくなります</p></div>
   <div class="task"><p class="task-t" style="margin:0">休むのもOKです</p></div>
@@ -512,7 +562,7 @@
   <div><span class="dow">火曜日</span><br><span class="date">Day 9｜11/24</span></div>
   <h3>✍️ 昨日のラジオのアウトプットを1つ</h3>
   <p class="desc"><b>聴いて終わりにしない日</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜売上別添削会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別添削会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">月曜ラジオで「いいな」と思ったことを1つ選ぶ</p></div>
   <div class="task"><p class="task-t" style="margin:0">自分の行動にしてみる（小さくてOK）</p></div>
   <div class="task"><p class="task-t">アウトプット部屋か日報に残す</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">✍️ #アウトプット部屋 へ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">#日報タスク部屋 へ報告 →</a></div></div>
@@ -521,7 +571,7 @@
   <div><span class="dow">水曜日</span><br><span class="date">Day 10｜11/25</span></div>
   <h3>🎧 おとよさんのラジオを聴く</h3>
   <p class="desc"><b>気になった一言をメモ</b></p>
-  <div class="event">📅 今日 22:00〜 はなさん｜売上別添削会（30万円以上）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 はなさん｜売上別添削会（30万円以上）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">おとよさんのラジオを聴く</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1400788472658264104" target="_blank" rel="noopener">📻 #ラジオ へ →</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">気になった一言をメモ（それだけでOK）</p></div>
   <div class="task"><p class="task-t" style="margin:0">木曜の発言ネタにもなります</p></div>
@@ -530,7 +580,7 @@
   <div><span class="dow">木曜日</span><br><span class="date">Day 11｜11/26</span></div>
   <h3>💡 ノウハウのアウトプット＋交流の日</h3>
   <p class="desc"><b>読んで、1つ出して、誰か1人に声かけ</b></p>
-  <div class="event">📅 今日 22:00〜 おとよさん｜売上別月報会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 おとよさん｜売上別月報会（10〜30万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">講師3人のノウハウ部屋から、1つ読む</p><div class="btn-stack"><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 へ →</a><a class="room-btn " href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 へ →</a></div></div>
   <div class="task"><p class="task-t">アウトプット部屋に、1つ出す</p><div class="btn-stack"><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1434221478802362460" target="_blank" rel="noopener">#アウトプット部屋 へ（投稿はこちら／返信は禁止） →</a></div></div>
   <div class="task"><p class="task-t">声かけは「雑談、質問部屋」でメンション（アウトプット部屋は返信禁止）</p><div class="btn-stack"><a class="room-btn blue" href="https://discord.com/channels/1400630282964701254/1400790398556831816" target="_blank" rel="noopener">💬 #雑談、質問部屋 へ（声かけはこちら） →</a></div></div>
@@ -555,7 +605,7 @@
   <div><span class="dow">日曜日</span><br><span class="date">Day 14｜11/29</span></div>
   <h3>🌿 10分振り返り</h3>
   <p class="desc"><b>できた／できなかったを確認</b></p>
-  <div class="event">📅 今日 22:00〜 しほ｜売上別月報会（0〜10万円）</div><div class="task"><p class="task-t">授業に参加したら、QRを読み取ってアプリでスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 スタンプカード（アプリ）を開く →</a></div></div>
+  <div class="event">📅 今日 22:00〜 しほ｜売上別月報会（0〜10万円）</div><div class="task"><p class="task-t">授業に参加したら、講師が出すQRを読み取ってスタンプを押す</p><div class="btn-stack"><a class="room-btn pink" href="#stampcard">🎟 スタンプカードを見る →</a></div></div>
   <div class="task"><p class="task-t">下の「振り返り報告」の型で、日報タスク部屋に報告</p><div class="btn-stack"><a class="room-btn cherry" href="https://discord.com/channels/1400630282964701254/1400791174687490078" target="_blank" rel="noopener">📝 #日報タスク部屋 へ報告 →</a><a class="room-btn" style="background:#a39e93" href="#report2">📝 投稿の型へジャンプ ↓</a></div></div>
   <div class="task"><p class="task-t" style="margin:0">できなかった理由も書くと、次が組みやすくなります</p></div>
   <div class="task"><p class="task-t" style="margin:0">休むのもOKです</p></div>
@@ -589,7 +639,7 @@
   </section>
   <section class="panel">
     <h2>🔗 Discord部屋リンク集</h2>
-    <div class="rooms"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 RMC公式アプリ（スタンプカード）→</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400785237931331676" target="_blank" rel="noopener">🎥 #ズームリンク部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">🗂 #アーカイブ部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1408439269042950297" target="_blank" rel="noopener">🌸 #月報報告部屋 →</a></div>
+    <div class="rooms"><a class="room-btn pink" href="https://rmc-stampcard.netlify.app" target="_blank" rel="noopener">📱 RMC公式アプリ →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400789959803142146" target="_blank" rel="noopener">📅 #スケジュール →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577483456712774" target="_blank" rel="noopener">💡 #しほのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1406577370688913429" target="_blank" rel="noopener">🌼 #はなのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1509559652109516850" target="_blank" rel="noopener">🐎 #おとよのノウハウ共有部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400785237931331676" target="_blank" rel="noopener">🎥 #ズームリンク部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400630283799101495" target="_blank" rel="noopener">🎬 #動画教材 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1400788451900526702" target="_blank" rel="noopener">🗂 #アーカイブ部屋 →</a><a class="room-btn dark" href="https://discord.com/channels/1400630282964701254/1408439269042950297" target="_blank" rel="noopener">🌸 #月報報告部屋 →</a></div>
     <p class="note">毎月20日の「今月のテーマ」は、自分の売上帯の部屋（#0-5万円／#5-10万円）で話し合います。</p>
   </section>
   </main>
@@ -629,7 +679,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v35）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v37）</footer>
 </div>
 
 <script>
@@ -744,5 +794,97 @@
 })();
 </script>
 <a class="to-top" href="#top">⬆ トップへ戻る</a>
+
+<script>
+(function(){
+  var KEY = "rmc-2week-compass-v3";
+  var CLASSES = {
+    "2026-11-17": {name: "全体授業「AIで仕事を減らす」", token: "sicey0"},
+    "2026-11-19": {name: "全体の添削会（ストーリーズ）", token: "ltlbn9"},
+    "2026-11-22": {name: "全体の添削会", token: "b5z4hy"},
+    "2026-11-24": {name: "売上別添削会（10〜30万円）", token: "nrlhbd"},
+    "2026-11-25": {name: "売上別添削会（30万円以上）", token: "jesh18"},
+    "2026-11-26": {name: "売上別月報会（10〜30万円）", token: "3orgvt"},
+    "2026-11-29": {name: "売上別月報会（0〜10万円）", token: "lgcvzj"}
+  };
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ return {}; } }
+  function saveAll(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+  function fmt(d){ return d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0"); }
+  function addDays(ds, n){ var p = ds.split("-").map(Number); return fmt(new Date(Date.UTC(p[0], p[1] - 1, p[2] + n))); }
+  function jstToday(){ return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); }
+  function renderStamps(){
+    var stamps = (load().stamps) || {};
+    var n = 0;
+    document.querySelectorAll(".stamp-slot").forEach(function(el){
+      var got = !!stamps[el.dataset.stampDate];
+      if (got) n++;
+      el.classList.toggle("got", got);
+      el.querySelector(".stamp-mark").textContent = got ? "🎟" : "・";
+    });
+    var c = document.getElementById("stampCount");
+    if (c) c.textContent = "スタンプ " + n + "/7個";
+  }
+  function showMsg(text, ok){
+    var m = document.getElementById("stampMsg");
+    if (!m) return;
+    m.textContent = text;
+    m.style.display = "block";
+    m.style.background = ok ? "#e7f5e9" : "#fdeef2";
+    m.style.color = ok ? "#2e7d32" : "#b03060";
+  }
+  var msg = null, ok = false;
+  try {
+    var q = new URLSearchParams(location.search);
+    var d = q.get("s"), k = q.get("k");
+    if (d) {
+      var cls = CLASSES[d];
+      if (!cls) { msg = "このQRは、スタンプの対象ではありませんでした。"; }
+      else if (k !== cls.token) { msg = "うまく読み取れませんでした。もう一度QRを読み取るか、講師に声をかけてください。"; }
+      else {
+        var today = jstToday();
+        if (today !== d && today !== addDays(d, 1)) { msg = "スタンプを押せるのは、授業の当日と翌日だけです。"; }
+        else {
+          var s = load(); s.stamps = s.stamps || {};
+          if (s.stamps[d]) { msg = "このスタンプは、もう付いています🎟"; ok = true; }
+          else { s.stamps[d] = today; saveAll(s); msg = "🎟 " + d.slice(5).replace("-", "/") + " " + cls.name + " のスタンプが付きました！"; ok = true; }
+        }
+      }
+      history.replaceState(null, "", location.pathname + location.hash);
+    }
+  } catch(e) {}
+  renderStamps();
+  if (msg) {
+    showMsg(msg, ok);
+    var panel = document.getElementById("stampcard");
+    if (panel) setTimeout(function(){ panel.scrollIntoView({behavior: "smooth", block: "start"}); }, 300);
+  }
+  document.querySelectorAll('a[href="#stampcard"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var btn = document.querySelector('[data-view-btn="today"]');
+      if (btn) btn.click();
+      var panel = document.getElementById("stampcard");
+      if (panel) setTimeout(function(){ panel.scrollIntoView({behavior: "smooth", block: "start"}); }, 80);
+    });
+  });
+  var reset = document.getElementById("resetBtn");
+  if (reset) reset.addEventListener("click", function(){ setTimeout(renderStamps, 60); });
+
+  var QR_PIN = "1116";
+  var qrList = document.getElementById("qrList"), qrGate = document.getElementById("qrGate");
+  function openQr(){
+    if (qrList) qrList.style.display = "block";
+    if (qrGate) qrGate.style.display = "none";
+    try { sessionStorage.setItem("rmc-qr-open", "1"); } catch(e) {}
+  }
+  try { if (sessionStorage.getItem("rmc-qr-open") === "1") openQr(); } catch(e) {}
+  var qrBtn = document.getElementById("qrOpenBtn");
+  if (qrBtn) qrBtn.addEventListener("click", function(){
+    var v = (document.getElementById("qrPin") || {}).value || "";
+    if (v === QR_PIN) { openQr(); }
+    else { var m = document.getElementById("qrPinMsg"); if (m) m.style.display = "block"; }
+  });
+})();
+</script>
 </body>
 </html>
