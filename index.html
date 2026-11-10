@@ -424,6 +424,12 @@
   <section class="panel" id="stampcard" style="margin-top:16px">
     <h2>🎟 スタンプカード（授業参加）</h2>
     <p class="note" style="margin:0 0 10px">授業・添削会・月報会に参加したら、講師が出すQRコードを、スマホのカメラで読み取ってください。<br>読み取ると、このカードにスタンプが付きます。</p>
+    <button id="scanBtn" type="button" style="display:block; width:100%; box-sizing:border-box; background:var(--cherry); color:#fff; font-weight:700; font-size:16px; font-family:inherit; border:none; border-radius:99px; padding:13px 10px; cursor:pointer; margin:0 0 10px">📷 QRコードを読み取る</button>
+    <div id="scanBox" style="display:none; margin:0 0 12px">
+      <video id="scanVideo" playsinline muted style="width:100%; border-radius:14px; background:#222; display:block"></video>
+      <p class="note" id="scanMsg" style="margin:6px 0">QRコードをカメラに写してください。</p>
+      <button id="scanStop" type="button" class="secondary" style="width:100%">やめる（カメラを閉じる）</button>
+    </div>
     <div id="stampMsg"></div>
     <div class="stamp-grid">
       <div class="stamp-slot" data-stamp-date="2026-11-17"><div class="stamp-mark">・</div><b>11/17</b><span>全体授業「AIで仕事を減らす」<br>おとよさん</span></div>
@@ -674,7 +680,7 @@
     ※ 毎日の報告は、日報にいつもの報告＋「2週間シート Day◯ ☑」の1行を足すだけです。</p>
   </section>
   </main>
-  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v38）</footer>
+  <footer>Rebel Muses Craft｜2週間コンパス（テスト版 v39）</footer>
 </div>
 
 <script>
@@ -827,31 +833,28 @@
     m.style.background = ok ? "#e7f5e9" : "#fdeef2";
     m.style.color = ok ? "#2e7d32" : "#b03060";
   }
-  var msg = null, ok = false;
+  function applyStamp(d, k){
+    var cls = CLASSES[d];
+    if (!cls) return {text: "このQRは、スタンプの対象ではありませんでした。", ok: false};
+    if (k !== cls.token) return {text: "うまく読み取れませんでした。もう一度QRを読み取るか、講師に声をかけてください。", ok: false};
+    var today = jstToday();
+    if (today !== d && today !== addDays(d, 1)) return {text: "スタンプを押せるのは、授業の当日と翌日だけです。", ok: false};
+    var s = load(); s.stamps = s.stamps || {};
+    if (s.stamps[d]) return {text: "このスタンプは、もう付いています🎟", ok: true};
+    s.stamps[d] = today; saveAll(s); renderStamps();
+    return {text: "🎟 " + d.slice(5).replace("-", "/") + " " + cls.name + " のスタンプが付きました！", ok: true};
+  }
+  var msg = null;
   try {
     var q = new URLSearchParams(location.search);
-    var d = q.get("s"), k = q.get("k");
-    if (d) {
-      var cls = CLASSES[d];
-      if (!cls) { msg = "このQRは、スタンプの対象ではありませんでした。"; }
-      else if (k !== cls.token) { msg = "うまく読み取れませんでした。もう一度QRを読み取るか、講師に声をかけてください。"; }
-      else {
-        var today = jstToday();
-        if (today !== d && today !== addDays(d, 1)) { msg = "スタンプを押せるのは、授業の当日と翌日だけです。"; }
-        else {
-          var s = load(); s.stamps = s.stamps || {};
-          if (s.stamps[d]) { msg = "このスタンプは、もう付いています🎟"; ok = true; }
-          else { s.stamps[d] = today; saveAll(s); msg = "🎟 " + d.slice(5).replace("-", "/") + " " + cls.name + " のスタンプが付きました！"; ok = true; }
-        }
-      }
-      history.replaceState(null, "", location.pathname + location.hash);
-    }
+    var d0 = q.get("s"), k0 = q.get("k");
+    if (d0) { var r0 = applyStamp(d0, k0); msg = r0; history.replaceState(null, "", location.pathname + location.hash); }
   } catch(e) {}
   renderStamps();
   if (msg) {
-    showMsg(msg, ok);
-    var panel = document.getElementById("stampcard");
-    if (panel) setTimeout(function(){ panel.scrollIntoView({behavior: "smooth", block: "start"}); }, 300);
+    showMsg(msg.text, msg.ok);
+    var panel0 = document.getElementById("stampcard");
+    if (panel0) setTimeout(function(){ panel0.scrollIntoView({behavior: "smooth", block: "start"}); }, 300);
   }
   document.querySelectorAll('a[href="#stampcard"]').forEach(function(a){
     a.addEventListener("click", function(e){
@@ -865,6 +868,90 @@
   var reset = document.getElementById("resetBtn");
   if (reset) reset.addEventListener("click", function(){ setTimeout(renderStamps, 60); });
 
+  /* ===== ページ内QRスキャナ ===== */
+  var stream = null, scanning = false, jsqrPromise = null;
+  var scanBtn = document.getElementById("scanBtn"), scanBox = document.getElementById("scanBox"),
+      video = document.getElementById("scanVideo"), scanMsgEl = document.getElementById("scanMsg"),
+      scanStopBtn = document.getElementById("scanStop");
+  function setScanMsg(x){ if (scanMsgEl) scanMsgEl.textContent = x; }
+  function stopScan(){
+    scanning = false;
+    if (stream) { stream.getTracks().forEach(function(tr){ tr.stop(); }); stream = null; }
+    if (scanBox) scanBox.style.display = "none";
+    if (scanBtn) scanBtn.style.display = "block";
+  }
+  function loadJsQR(){
+    if (window.jsQR) return Promise.resolve();
+    if (jsqrPromise) return jsqrPromise;
+    jsqrPromise = new Promise(function(res, rej){
+      var sc = document.createElement("script");
+      sc.src = "https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js";
+      sc.onload = res; sc.onerror = rej;
+      document.head.appendChild(sc);
+    });
+    return jsqrPromise;
+  }
+  function handleDecoded(text){
+    stopScan();
+    var d = null, k = null;
+    try { var u = new URL(text); d = u.searchParams.get("s"); k = u.searchParams.get("k"); } catch(e) {}
+    var r = d ? applyStamp(d, k) : {text: "このQRは、スタンプ用ではありませんでした。", ok: false};
+    showMsg(r.text, r.ok);
+    var panel = document.getElementById("stampcard");
+    if (panel) panel.scrollIntoView({behavior: "smooth", block: "start"});
+  }
+  async function startScan(){
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showMsg("このブラウザではカメラを起動できませんでした。スマホのカメラアプリでQRを読み取ってください。", false);
+      return;
+    }
+    if (scanBox) scanBox.style.display = "block";
+    if (scanBtn) scanBtn.style.display = "none";
+    setScanMsg("カメラを起動しています…");
+    try { stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}, audio: false}); }
+    catch(e) {
+      setScanMsg("カメラを使えませんでした。許可の設定を確認するか、スマホのカメラアプリで読み取ってください。");
+      if (scanBtn) scanBtn.style.display = "block";
+      return;
+    }
+    video.srcObject = stream;
+    try { await video.play(); } catch(e) {}
+    scanning = true;
+    setScanMsg("QRコードをカメラに写してください。");
+    var detector = null;
+    if ("BarcodeDetector" in window) { try { detector = new BarcodeDetector({formats: ["qr_code"]}); } catch(e) { detector = null; } }
+    if (!detector) {
+      try { await loadJsQR(); }
+      catch(e) { setScanMsg("読み取りの準備に失敗しました。スマホのカメラアプリでQRを読み取ってください。"); stopScan(); return; }
+    }
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d", {willReadFrequently: true});
+    (function loop(){
+      if (!scanning) return;
+      if (video.readyState >= 2) {
+        if (detector) {
+          detector.detect(video).then(function(codes){
+            if (codes && codes.length) { handleDecoded(codes[0].rawValue); return; }
+            if (scanning) setTimeout(loop, 250);
+          }).catch(function(){ if (scanning) setTimeout(loop, 250); });
+          return;
+        }
+        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+        if (canvas.width) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          var img = null;
+          try { img = ctx.getImageData(0, 0, canvas.width, canvas.height); } catch(e) {}
+          var code = (img && window.jsQR) ? window.jsQR(img.data, img.width, img.height) : null;
+          if (code && code.data) { handleDecoded(code.data); return; }
+        }
+      }
+      setTimeout(loop, 250);
+    })();
+  }
+  if (scanBtn) scanBtn.addEventListener("click", startScan);
+  if (scanStopBtn) scanStopBtn.addEventListener("click", stopScan);
+
+  /* ===== 講師用QRの合言葉 ===== */
   var QR_PIN = "1116";
   var qrList = document.getElementById("qrList"), qrGate = document.getElementById("qrGate");
   function openQr(){
@@ -881,5 +968,6 @@
   });
 })();
 </script>
+
 </body>
 </html>
